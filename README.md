@@ -2,6 +2,10 @@
 
 # Introdução
 
+Aplicativo de filmes e series, onde e possivel ver um trailer e achar as
+informaçoes mais relevantes de diversos filmes, series e artistas
+favoritos.
+
  LINK: https://celebrated-dusk-9c8c58.netlify.app/
 
 Instalaçao
