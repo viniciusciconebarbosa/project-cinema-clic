@@ -62,16 +62,16 @@ interface SimilarResponse {
   results: SimilarMovie[];
 }
 
-export const MovieDetailsPage: FC = () => {
+export const MovieDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const [movie] = useRequestData<MovieDetails>(`${detalhe}${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&append_to_response=videos&language=pt-BR`);
-  const [castFull] = useRequestData<CastResponse>(`${actorsList}/${id}/casts?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
-  const [trailers] = useRequestData<{ results: Array<{ key: string }> }>(`${video}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR`);
-  const [related] = useRequestData<SimilarResponse>(`${actorsList}/${id}/similar?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR`);
+  const [movie] = useRequestData(`${detalhe}${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&append_to_response=videos&language=pt-BR`);
+  const [castFull] = useRequestData(`${actorsList}/${id}/casts?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
+  const [trailers] = useRequestData(`${video}/${id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR`);
+  const [related] = useRequestData(`${actorsList}/${id}/similar?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=pt-BR`);
 
-  const atc = castFull?.cast.filter(x => x.profile_path !== null);
+  const atc = castFull.cast.filter(x => x.profile_path !== null);
   const director = castFull?.crew.filter(x => x.department === 'Directing');
 
   const handleMovieClick = (movie: SimilarMovie): void => {
