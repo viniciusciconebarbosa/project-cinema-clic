@@ -1,17 +1,12 @@
-export const trend = `https://api.themoviedb.org/3/
-trending/all/day?api_key=9e6c3df50cc7a5e4e6dd9424b942e068`
+import { config } from '../config/env'
 
-export const findMovie = `https://api.themoviedb.org/3/search/
-movie?api_key=9e6c3df50cc7a5e4e6dd9424b942e068`
+const API_KEY = config.TMDB_API_KEY
 
-export const discover = `https://api.themoviedb.org/3/discover/movie?api_key=9e6c3df50cc7a5e4e6dd9424b942e068`
-
-export const now_playing = `https://api.themoviedb.org/3/movie/now_playing?
-api_key=9e6c3df50cc7a5e4e6dd9424b942e068&with_genres=28-12&language=pt-BR` 
-
-export const detalhe = `https://api.themoviedb.org/3/movie/`
-
-export const detalheTV = `https://api.themoviedb.org/3/tv/`
+export const trend = `${config.BASE_URL}/trending/all/day?api_key=${API_KEY}`
+export const findMovie = `${config.BASE_URL}/search/movie?api_key=${API_KEY}`
+export const discover = `${config.BASE_URL}/discover/movie?api_key=${API_KEY}`
+export const detalhe = `${config.BASE_URL}/movie/`
+export const detalheTV = `${config.BASE_URL}/tv/`
 
 export const actorsList = `https://api.themoviedb.org/3/movie` 
 
