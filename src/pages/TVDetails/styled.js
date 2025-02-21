@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import sheBackGround from '../../assets/sheBackGround.jpg'
 
 
 export const Header = styled.header`

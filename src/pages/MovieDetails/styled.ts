@@ -46,7 +46,7 @@ export const Section1 = styled.section`
    padding: 0.5vh;
    display: flex;
    justify-content: center;
-   background: url(${ props => props.backGround });
+   background: url(${ (props: { image1?: string }) => props.image1 });
    background-size: 100%;
    background-repeat: no-repeat;
    color: white;

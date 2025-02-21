@@ -51,7 +51,6 @@ export const TVDetailsPage = () => {
                <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${similar.backdrop_path}`} ></img>
                <strong>{similar.name}</strong>
             </DivImagePerson>
-          
          </Person>
       )
    })
@@ -93,7 +92,6 @@ export const TVDetailsPage = () => {
                      webkitallowfullscreen="webkitallowfullscreen">
                   </iframe>
                </ContainerSection3>
-
             </Section2>
 
             <Section3>
