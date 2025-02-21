@@ -11,10 +11,10 @@ export const Header = styled.header`
    align-items: center;
    background-color: #001e3c;
    color: white;
-   font-weight: 700;
+   font-weight: 200;
    font-size: 3em;
    box-shadow: inset 0 0 1em black;
-   font-family: 'Source Sans Pro', Arial, sans-serif;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `
 
 export const Main = styled.main`
@@ -26,13 +26,24 @@ export const Main = styled.main`
    justify-content: center;
    flex-direction: column;
 `
+
+export const Checks = styled.div`
+
+   display: flex;
+   flex-direction: row;
+
+`
+
 export const ContainerCheck = styled.div`
 
+   display: flex;
+   justify-content: center;
+   align-items: center;
    background-color: #79bcff;
    border-radius: 10px;
    cursor: pointer;
-   margin: 1px;
-   padding: 0px 0 0px 10px;
+   margin: 10px;
+   padding: 10px;
 `
 export const SenctionFind = styled.section`
    
@@ -47,12 +58,15 @@ export const input = {
    width: '95%',
    height: '80%',
    margin: '10px',
-   color: 'primary.main'
+   color: 'primary.main',
+   bgcolor: '#40658a60'
 }  
 
 
 export const Section1 = styled.section`
    text-align: center;
+   flex-direction: column;
+   align-items: center;
    width: 100%;
    height: 100%;
    padding: 0.5vh;
@@ -61,6 +75,11 @@ export const Section1 = styled.section`
    justify-content: center;
    background-image: url(${sheBackGround});
    background-position: fixed;
+   h4{
+
+      margin: 6px;
+
+   }
 `
 
 export const Section2 = styled.section`

@@ -108,7 +108,6 @@ export const MovieDetailsPage = () => {
 
          <Footer>
             Todos os direitos reservados !
-            <button onClick={() => console.log(director)}>xxx</button>
          </Footer>
       </>
 
