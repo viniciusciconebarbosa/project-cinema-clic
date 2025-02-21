@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "../pages/home/HomePage";
-import { MovieDetailsPage } from "../pages/movieDetailsPage/MovieDetailsPage";
-import { TVDetailsPage } from "../pages/tvDetailsPage/TVDetailsPage";
+import { MovieDetailsPage } from "../pages/MovieDetails/MovieDetailsPage";
+import { TVDetailsPage } from "../pages/TVDetails/TVDetailsPage";
 import { MovieProvider } from '../context/MovieContext';
 
 export const Router = () => {

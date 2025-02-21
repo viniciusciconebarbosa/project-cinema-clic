@@ -16,5 +16,17 @@ export const MovieContext = createContext<MovieContextType>({} as MovieContextTy
 export const MovieProvider: FC<MovieProviderProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
   
-  // Provider implementation
+  const addFavorite = (movie: Movie) => {
+    setFavorites((prevFavorites) => [...prevFavorites, movie]);
+  };
+
+  const removeFavorite = (id: number) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((movie) => movie.id !== id));
+  };
+
+  return (
+    <MovieContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+      {children}
+    </MovieContext.Provider>
+  );
 };
