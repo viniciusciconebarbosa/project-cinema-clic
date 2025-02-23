@@ -1,12 +1,13 @@
-'use client'
+// app/components/pag.tsx
+'use client';
 import { Pagination, Stack } from "@mui/material";
 
-export const BasicPag = (props) => {
+export const BasicPag = ({ color, count, onChange }) => {
   return (
-    <Stack spacing={2}>
-      <Pagination size="large" />
+    <Stack spacing={1}>
+      <Pagination color={color} count={count} onChange={onChange} size="large" />
     </Stack>
   );
-}
+};
 
 export default BasicPag;
