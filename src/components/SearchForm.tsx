@@ -7,37 +7,28 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Checks } from '@/app/styled';
+import { useMovieContext } from '@/context/MovieContext';
 
-interface SearchFormProps {
-  initialState: string;
-  initialQuery: string;
-}
-
-export default function SearchForm({ initialState, initialQuery }: SearchFormProps) {
-  const [state, setState] = useState(initialState);
-  const [textfield1, set1Textfield] = useState(initialQuery);
+export default function SearchForm() {
+  const { genre, query, setGenre, setQuery } = useMovieContext();
 
   const handleGenreChange = (event: SelectChangeEvent) => {
-    setState(event.target.value);
-    // Aqui você pode fazer uma nova requisição ou atualizar o estado global
+    setGenre(event.target.value);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    set1Textfield(event.target.value);
-    // Aqui você pode fazer uma nova requisição ou atualizar o estado global
+    setQuery(event.target.value);
   };
 
   return (
     <>
-   
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Gênero</InputLabel>
         <Select
           sx={{ width: '75vw', bgcolor: '#40658a60', color: 'black' }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={state}
+          value={genre}
           label="Gênero"
           onChange={handleGenreChange}
         >
@@ -67,12 +58,11 @@ export default function SearchForm({ initialState, initialQuery }: SearchFormPro
       <TextField
         sx={{ width: '75vw', bgcolor: '#40658a60', color: 'black' }}
         id="filled-basic"
-        value={textfield1}
+        value={query}
         onChange={handleSearchChange}
         label="Busque seu filme favorito aqui! :D"
         variant="filled"
       />
-    
     </>
   );
 }
