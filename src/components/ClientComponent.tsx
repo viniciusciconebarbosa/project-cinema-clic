@@ -63,7 +63,7 @@ export default function ClientComponent({
     <>
       <Section2>
         <ContainerSection2>
-          {/* Lista de filmes */}
+          {/* Lista de filmess */}
           <>
             {movies.map((movie, key) => (
               <Card key={key}>
