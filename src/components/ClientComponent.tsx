@@ -2,91 +2,58 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FindMovieData, Movie } from "../components/types";
-import { trend, findMovie } from "../constants/url";
-import axios from "axios";
-import BasicPag from "./pag";
 import { MovieCard } from "./MovieCard";
-import {
-  Card,
-  DivImage,
-  Image,
-  InfoCard,
-  Data,
-  ContainerSection2,
-  Section2,
-  Section3,
-} from "../app/styled";
+import BasicPag from "./pag";
+import { useMovieContext } from "@/context/MovieContext";
+import { Card, DivImage, Image, InfoCard, Data, ContainerSection2, Section2, Section3 } from "../app/styled";
 import Link from "next/link";
 import styles from "../app/page.module.css";
+import { Movie } from "./types";
 
 interface ClientComponentProps {
   initialMovies: Movie[];
-  totalPages: number;
 }
 
-export default function ClientComponent({
-  initialMovies,
-  totalPages,
-}: ClientComponentProps) {
-  const [movies, setMovies] = useState<Movie[]>(initialMovies);
-  const [genre, setGenre] = useState("");
-  const [query, setQuery] = useState("");
+export default function ClientComponent({ initialMovies }: ClientComponentProps) {
+  const { movies, totalPages , setGenre, setQuery, fetchMovies } = useMovieContext();
   const [page, setPage] = useState(1);
 
-  const fetchMovies = async (url: string) => {
-    const response = await axios.get(url);
-    return response.data;
-  };
-
-  const handleSearch = async () => {
-    const url = `${
-      query.length === 0 ? trend : findMovie
-    }&with_genres=${genre}&page=${page}&query=${query}&language=pt-BR&region=BR`;
-    const data = await fetchMovies(url);
-    setMovies(data.results);
-  };
-
+  // Atualiza a lista de filmes quando a página muda
   useEffect(() => {
-    handleSearch();
-  }, [genre, query, page]);
+    fetchMovies(page);
+  }, [page]);
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <>
       <Section2>
         <ContainerSection2>
-          {/* Lista de filmess */}
-          <>
-            {movies.map((movie, key) => (
-              <Card key={key}>
-                <DivImage>
-                  <Image
-                    alt="filme"
-                    src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
-                  />
-                </DivImage>
-                  <Link href="/series" className={styles.primary}>
-                    Ir para a Página da serie.
-                  </Link>
-                <InfoCard>
-                  {movie.title === undefined ? movie.name : movie.title}
-                </InfoCard>
-                <Data>
-                  {movie.release_date === undefined
-                    ? movie.first_air_date
-                    : movie.release_date}
-                </Data>
-              </Card>
-            ))}
-          </>
+          {/* Lista de filmes */}
+          {movies.map((movie, key) => (
+            <Card key={key}>
+              <DivImage>
+                <Image
+                  alt="filme"
+                  src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
+                />
+              </DivImage>
+              <Link href="/series" className={styles.primary}>
+                Ir para a Página da série.
+              </Link>
+              <InfoCard>
+                {movie.title === undefined ? movie.name : movie.title}
+              </InfoCard>
+              <Data>
+                {movie.release_date === undefined
+                  ? movie.first_air_date
+                  : movie.release_date}
+              </Data>
+            </Card>
+          ))}
         </ContainerSection2>
       </Section2>
       <Section3>
@@ -99,7 +66,6 @@ export default function ClientComponent({
     </>
   );
 }
-
 /* 
 "use client";
 

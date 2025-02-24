@@ -36,18 +36,21 @@ const HomeContent = async () => {
   const query = "";
   const pageURL = trend;
   const findMovie1 = await fetchMovies(
-    `${
-      query.length === 0 ? pageURL : findMovie
-    }&with_genres=${genre}&page=1&query=${query}
+    `${query.length === 0 ? pageURL : findMovie}&with_genres=${genre}&page=1&query=${query}
     &language=pt-BR&region=BR`
   );
 
   const movies = findMovie1.results;
   const totalPages = findMovie1.total_pages;
+  console.log(`${query.length === 0 ? pageURL : findMovie}&with_genres=${genre}&page=1&query=${query}
+    &language=pt-BR&region=BR`);
 
   return (
     <>
-      <Header>Filmes TMDB</Header>
+      
+      <Header>Filmes TMDB
+
+      </Header>
       <Main>
         <Section1>
           <h4>Escolha o gênero do filme!</h4>
@@ -55,7 +58,7 @@ const HomeContent = async () => {
         </Section1>
 
         {/* Passa os filmes iniciais e a função de busca para o ClientComponent */}
-        <ClientComponent initialMovies={movies} totalPages={totalPages} />
+        <ClientComponent initialMovies={movies} />
       </Main>
 
       <Footer>Todos os direitos reservados!</Footer>
