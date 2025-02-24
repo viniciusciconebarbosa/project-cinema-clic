@@ -5,62 +5,26 @@ import { FindMovieData, Movie } from "../components/types"; // Importando as int
 import axios from "axios";
 import ClientComponent from "../components/ClientComponent";
 import SearchForm from "../components/SearchForm";
-import {
-  Card,
-  ContainerCheck,
-  ContainerSection2,
-  Data,
-  DivImage,
-  Footer,
-  Header,
-  Image,
-  input,
-  InfoCard,
-  Main,
-  Section1,
-  Section2,
-  Section3,
-  SenctionFind,
-  Checks,
-} from "./styled";
-import BasicPag from "../components/pag";
+import { Footer, Header, Main, Section1 } from "./styled";
 import { MovieProvider } from "../context/MovieContext";
 
-async function fetchMovies(url: string): Promise<FindMovieData> {
-  const response = await axios.get(url);
-  return response.data;
-}
-
 const HomeContent = async () => {
-  const genre = "";
-  const query = "";
-  const pageURL = trend;
-  const findMovie1 = await fetchMovies(
-    `${query.length === 0 ? pageURL : findMovie}&with_genres=${genre}&page=1&query=${query}
-    &language=pt-BR&region=BR`
-  );
-
-  const movies = findMovie1.results;
-  const totalPages = findMovie1.total_pages;
-  console.log(`${query.length === 0 ? pageURL : findMovie}&with_genres=${genre}&page=1&query=${query}
-    &language=pt-BR&region=BR`);
-
   return (
     <>
-      
-      <Header>Filmes TMDB
-
-      </Header>
+      <Header>Filmes e series</Header>
       <Main>
         <Section1>
-          <h4>Escolha o gênero do filme!</h4>
+          <h5>
+            Descubra análises, notícias e curiosidades do mundo do cinema. Tudo<br></br>
+            sobre filmes, atores e lançamentos, com críticas detalhadas e
+            recomendações exclusivas.
+          </h5>
           <SearchForm />
         </Section1>
 
         {/* Passa os filmes iniciais e a função de busca para o ClientComponent */}
-        <ClientComponent initialMovies={movies} />
+        <ClientComponent />
       </Main>
-
       <Footer>Todos os direitos reservados!</Footer>
     </>
   );

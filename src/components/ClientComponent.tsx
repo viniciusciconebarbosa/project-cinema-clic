@@ -10,11 +10,8 @@ import Link from "next/link";
 import styles from "../app/page.module.css";
 import { Movie } from "./types";
 
-interface ClientComponentProps {
-  initialMovies: Movie[];
-}
 
-export default function ClientComponent({ initialMovies }: ClientComponentProps) {
+export default function ClientComponent() {
   const { movies, totalPages , setGenre, setQuery, fetchMovies } = useMovieContext();
   const [page, setPage] = useState(1);
 
@@ -41,9 +38,7 @@ export default function ClientComponent({ initialMovies }: ClientComponentProps)
                   src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
                 />
               </DivImage>
-              <Link href="/series" className={styles.primary}>
-                Ir para a Página da série.
-              </Link>
+        
               <InfoCard>
                 {movie.title === undefined ? movie.name : movie.title}
               </InfoCard>
