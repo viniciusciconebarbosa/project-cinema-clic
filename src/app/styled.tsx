@@ -16,7 +16,7 @@ export const Header = styled.header`
    font-weight: 200;
    font-size: 3em;
    box-shadow: inset 0 0 1em black;
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-family: 'Source Sans Pro', Arial, sans-serif;
 `
 
 export const Main = styled.main`
@@ -77,6 +77,11 @@ export const Section1 = styled.section`
    justify-content: center;
    background-image: url(${sheBackGround.src});
    background-position: fixed;
+
+   div{
+      margin: 4px;
+   }
+
    h4{
 
       margin: 6px;

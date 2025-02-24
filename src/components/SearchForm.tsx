@@ -1,19 +1,20 @@
 // app/components/SearchForm.tsx
 "use client";
 
-import { useState } from 'react';
 import { TextField, SelectChangeEvent } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useMovieContext } from '@/context/MovieContext';
+import { Checks } from '@/app/styled';
 
 export default function SearchForm() {
   const { genre, query, setGenre, setQuery } = useMovieContext();
 
-  const handleGenreChange = (event: SelectChangeEvent) => {
-    setGenre(event.target.value);
+  const handleGenreChange = async (event: SelectChangeEvent) => {
+    
+      setGenre(event.target.value);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ export default function SearchForm() {
   };
 
   return (
-    <>
+    <Checks>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Gênero</InputLabel>
         <Select
@@ -32,7 +33,7 @@ export default function SearchForm() {
           label="Gênero"
           onChange={handleGenreChange}
         >
-          <MenuItem value={'not'}>Nenhum</MenuItem>
+          <MenuItem value={''}>Nenhum</MenuItem>
           <MenuItem value={'28'}>Ação</MenuItem>
           <MenuItem value={'12'}>Aventura</MenuItem>
           <MenuItem value={'16'}>Animação</MenuItem>
@@ -53,16 +54,20 @@ export default function SearchForm() {
           <MenuItem value={'10752'}>Guerra</MenuItem>
           <MenuItem value={'37'}>Ocidental</MenuItem>
         </Select>
-      </FormControl>
-
       <TextField
         sx={{ width: '75vw', bgcolor: '#40658a60', color: 'black' }}
         id="filled-basic"
         value={query}
         onChange={handleSearchChange}
-        label="Busque seu filme favorito aqui! :D"
+        label="Busque seu filme ou serie."
         variant="filled"
       />
-    </>
+      </FormControl>
+
+    </Checks>
   );
+}
+
+function setTotalPages(total_pages: any) {
+  throw new Error('Function not implemented.');
 }
