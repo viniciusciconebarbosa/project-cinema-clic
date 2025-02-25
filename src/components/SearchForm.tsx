@@ -10,14 +10,17 @@ import { useMovieContext } from '@/context/MovieContext';
 import { Checks } from '@/app/styled';
 
 export default function SearchForm() {
-  const { genre, query, setGenre, setQuery } = useMovieContext();
+  
+  const { genre, query, setGenre, setQuery, setTotalPages, setPage } = useMovieContext();
 
   const handleGenreChange = async (event: SelectChangeEvent) => {
-    
-      setGenre(event.target.value);
+    setQuery('');
+    setGenre(event.target.value);
+    setPage(1);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGenre('');
     setQuery(event.target.value);
   };
 
@@ -68,6 +71,4 @@ export default function SearchForm() {
   );
 }
 
-function setTotalPages(total_pages: any) {
-  throw new Error('Function not implemented.');
-}
+
