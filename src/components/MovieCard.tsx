@@ -1,5 +1,4 @@
 import { Card, CardMedia, Typography } from "@mui/material";
-import { Console } from "console";
 
 interface Movie {
   id: number;

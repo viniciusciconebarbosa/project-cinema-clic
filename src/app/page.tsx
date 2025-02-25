@@ -1,8 +1,4 @@
   // app/page.tsx
-
-import { trend, findMovie } from "../constants/url";
-import { FindMovieData, Movie } from "../components/types"; // Importando as interfaces
-import axios from "axios";
 import ClientComponent from "../components/ClientComponent";
 import SearchForm from "../components/SearchForm";
 import { Footer, Header, Main, Section1 } from "./styled";

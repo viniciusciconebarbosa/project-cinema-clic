@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export const useRequestData = (url: string): [any | undefined] => {
+export const useRequestData = (url: string): [AxiosResponse<any, any> | undefined] => {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -18,20 +18,3 @@ export const useRequestData = (url: string): [any | undefined] => {
   return [data];
 };
 
-export const useRequestData2 = (url:any) => {
-   const [data, setData] = useState();
-
-   useEffect(() => {
-      axios
-         .get(url)
-         .then((response) => {
-            setData(response.data);
-         })
-         .catch((error) => {
-            console.log(error);
-            alert("Ocorreu um erro, tente novamente");
-         });
-   }, []);
-
-   return [data];
-};

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-async function fetchMovies(url: string, page: number): Promise<any> {
+async function fetchMovies(url: string): Promise<AxiosResponse<any, any>> {
     const response = await axios.get(url);
     return response.data;
 }
