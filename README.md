@@ -23,12 +23,12 @@ Voce pode optar por baixar esse projeto em seu computador e testar por si mesmo 
 
 Tecnologias ultilizadas : 
 
-* React
+* NextJS
 * Styled-components
 * Material ui
 * Axios
-* React Router Dom
-
+* Next Router
+* JestJs
 
 ## O desafio
 
