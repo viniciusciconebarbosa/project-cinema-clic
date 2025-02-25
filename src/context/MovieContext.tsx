@@ -53,8 +53,10 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     setTotalPages(response.data.total_pages);
     console.log(url)
   };
-
+ // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+
+     // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchMovies();
   }, [genre, query]);
 
