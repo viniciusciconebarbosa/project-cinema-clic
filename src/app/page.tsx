@@ -20,7 +20,6 @@ const HomeContent = async () => {
           <SearchForm />
         </Section1>
 
-        {/* Passa os filmes iniciais e a função de busca para o ClientComponent */}
         <ClientComponent />
       </Main>
       <Footer>Todos os direitos reservados!</Footer>
