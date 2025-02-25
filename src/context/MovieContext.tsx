@@ -17,36 +17,49 @@ interface MovieContextProps {
   fetchMovies: (page?: number) => Promise<void>;
   setMovies: (movies: Movie[]) => void;
   setTotalPages: (totalPages: number) => void;
+  page: number;
+  setPage: (page: number) => void;
 }
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
 
-  const [genre, setGenre] = useState('');
-  const [query, setQuery] = useState('');
+  
+  // Busca os filmes sempre que genre, query ou page mudar
   const [movies, setMovies] = useState<Movie[]>([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  
+  const [genre, setGenre] = useState('');
+  const [query, setQuery] = useState('');
 
+  
   const fetchMovies = async (page: number = 1) => {
 
-    const url = `${
-      query.length === 0 ? trend : findMovie
-    }&with_genres=${genre}&page=${page}&query=${query || ''}&language=pt-BR®ion=BR`;
+    const url = `${query.length === 0 && genre.length === 0 ? trend :
+           query.length === 0 ? discover :
+           findMovie}` +
+          `&with_genres=${genre}` +
+          `&page=${page}` +
+          `&query=${query || ''}` +
+          `&language=pt-BR` +
+          `&region=BR`;
+
 
     const response = await axios.get(url);
     setMovies(response.data.results);
     setTotalPages(0);
     setTotalPages(response.data.total_pages);
-  
+    console.log(url)
   };
-  // Busca os filmes sempre que genre, query ou page mudar
+
   useEffect(() => {
     fetchMovies();
   }, [genre, query]);
 
   return (
-    <MovieContext.Provider value={{setTotalPages, setMovies, genre, query, movies, totalPages, setGenre,
+    <MovieContext.Provider value={{ page, setPage,setTotalPages, setMovies, genre, query, movies, totalPages, setGenre,
      setQuery, fetchMovies }}>
 
       {children}

@@ -12,10 +12,9 @@ import { Movie } from "./types";
 
 
 export default function ClientComponent() {
-  const { movies, totalPages , setGenre, setQuery, fetchMovies } = useMovieContext();
-  const [page, setPage] = useState(1);
+  const { movies, totalPages , setGenre, setQuery, fetchMovies, page, setPage } = useMovieContext();
 
-  // Atualiza a lista de filmes quando a página muda
+
   useEffect(() => {
     fetchMovies(page);
   }, [page]);
@@ -29,7 +28,6 @@ export default function ClientComponent() {
     <>
       <Section2>
         <ContainerSection2>
-          {/* Lista de filmes */}
           {movies.map((movie, key) => (
             <Card key={key}>
               <DivImage>
@@ -38,7 +36,7 @@ export default function ClientComponent() {
                   src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
                 />
               </DivImage>
-        
+            
               <InfoCard>
                 {movie.title === undefined ? movie.name : movie.title}
               </InfoCard>
@@ -53,69 +51,13 @@ export default function ClientComponent() {
       </Section2>
       <Section3>
         <BasicPag
+          key={`${totalPages}`}
           color="primary"
-          count={totalPages}
+          count={totalPages > 500 ? 500 : totalPages}
           onChange={handlePageChange}
         />
       </Section3>
     </>
   );
 }
-/* 
-"use client";
 
-import { useRouter } from "next/navigation";
-import { goToDetailsPageMovie, goToDetailsPageTV } from '../router/cordinate';
-import { Movie } from '../components/types';
-import { Card, DivImage, Image, InfoCard, Data } from '../app/styled';
-import Link from "next/link";
-import styles from "../app/page.module.css";
-
-interface ClientComponentProps {
-  movies: Movie[];
-}
-
-const ClientComponent: React.FC<ClientComponentProps> = ({ movies }) => {
-  const navigate = useRouter();
-
-  const pafhVerify = (movie: Movie): void => {
-    if (movie.media_type === 'tv') {
-      goToDetailsPageTV(navigate, movie.id);
-      window.scrollTo(0, 0);
-    } else {
-      goToDetailsPageMovie(navigate, movie.id);
-      window.scrollTo(0, 0);
-    }
-  };
-
-  return (
-    <>
-      {movies.map((movie, key) => (
-        <Card key={key}>
-          <DivImage>
-            <Image
-              alt="filme"
-              onClick={() => pafhVerify(movie)}
-              src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
-            />
-            <Link href="/series" className={styles.primary}>
-              Ir para a Página da serie.
-            </Link>
-          </DivImage>
-          <InfoCard>
-            {movie.title === undefined ? movie.name : movie.title}
-          </InfoCard>
-          <Data>
-            {movie.release_date === undefined ? movie.first_air_date : movie.release_date}
-          </Data>
-        </Card>
-      ))}
-    </>
-  );
-};
-
-export default ClientComponent;
-
-
-
- */
