@@ -6,7 +6,7 @@ Aplicativo de filmes e series, onde e possivel ver um trailer e achar as
 informaçoes mais relevantes de diversos filmes, series e artistas
 favoritos. SITE RESPONSIVO PARA CELULARES
 
- LINK: https://celebrated-dusk-9c8c58.netlify.app/
+ LINK: https://mymoviesandseriestmdb.netlify.app/
 
 Instalaçao
 node.js/npm e requerido.
