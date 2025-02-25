@@ -11,7 +11,7 @@ import { Checks } from '@/app/styled';
 
 export default function SearchForm() {
   
-  const { genre, query, setGenre, setQuery, setTotalPages, setPage } = useMovieContext();
+  const { genre, query, setGenre, setQuery, setPage } = useMovieContext();
 
   const handleGenreChange = async (event: SelectChangeEvent) => {
     setQuery('');

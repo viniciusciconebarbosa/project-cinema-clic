@@ -1,18 +1,15 @@
 // app/components/ClientComponent.tsx
 "use client";
 
-import { useState, useEffect } from "react";
-import { MovieCard } from "./MovieCard";
 import BasicPag from "./pag";
 import { useMovieContext } from "@/context/MovieContext";
 import { Card, DivImage, Image, InfoCard, Data, ContainerSection2, Section2, Section3 } from "../app/styled";
-import Link from "next/link";
-import styles from "../app/page.module.css";
-import { Movie } from "./types";
+import { useEffect } from "react";
+
 
 
 export default function ClientComponent() {
-  const { movies, totalPages , setGenre, setQuery, fetchMovies, page, setPage } = useMovieContext();
+  const { movies, totalPages , fetchMovies, page, setPage } = useMovieContext();
 
 
   useEffect(() => {
