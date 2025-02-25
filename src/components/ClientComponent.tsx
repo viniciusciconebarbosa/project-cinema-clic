@@ -14,6 +14,7 @@ export default function ClientComponent() {
 
   useEffect(() => {
     fetchMovies(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
