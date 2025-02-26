@@ -8,11 +8,11 @@ export const discover = `${config.BASE_URL}/discover/movie?api_key=${API_KEY}`
 export const detalhe = `${config.BASE_URL}/movie/`
 export const detalheTV = `${config.BASE_URL}/tv/`
 
-export const actorsList = `https://api.themoviedb.org/3/movie` 
+export const actorsList = `${config.BASE_URL}/movie` 
 
-export const actorsListTV = `https://api.themoviedb.org/3/tv` 
+export const actorsListTV = `${config.BASE_URL}/tv` 
 
-export const video = `https://api.themoviedb.org/3/movie/`
+export const video = `${config.BASE_URL}/movie/`
 
 
 export const image = {

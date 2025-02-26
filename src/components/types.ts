@@ -8,7 +8,7 @@ export interface Movie {
     name?: string;
     release_date?: string;
     first_air_date?: string;
-    overview?: string; // Adicione mais campos conforme necessário
+    overview?: string; 
   }
   
   export interface FindMovieData {

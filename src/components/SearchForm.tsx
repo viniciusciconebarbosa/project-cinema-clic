@@ -8,21 +8,22 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useMovieContext } from '@/context/MovieContext';
 import { Checks } from '@/app/styled';
+import { useCallback } from 'react';
 
 export default function SearchForm() {
   
   const { genre, query, setGenre, setQuery, setPage } = useMovieContext();
 
-  const handleGenreChange = async (event: SelectChangeEvent) => {
+  const handleGenreChange = useCallback((event: SelectChangeEvent) => {
     setQuery('');
     setGenre(event.target.value);
     setPage(1);
-  };
+  }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGenre('');
     setQuery(event.target.value);
-  };
+  }
 
   return (
     <Checks>

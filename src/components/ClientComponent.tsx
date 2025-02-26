@@ -1,26 +1,27 @@
-// app/components/ClientComponent.tsx
 "use client";
 
-import BasicPag from "./pag";
+import Pag from "./Pagination";
 import { useMovieContext } from "@/context/MovieContext";
-import { Card, DivImage, Image, InfoCard, Data, ContainerSection2, Section2, Section3 } from "../app/styled";
-import { useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
+import Image from "next/image";
+import styles from "./page.module.css";
+import { ContainerSection2, Data,  InfoCard, DivImage, Card, Section2, Section3 } from "./styled";
+import alt from "../assets/altmovie.jpg";
 
-
-
-export default function ClientComponent() {
-  const { movies, totalPages , fetchMovies, page, setPage } = useMovieContext();
-
+function ClientComponent() {
+  const { movies, totalPages, fetchMovies, page, setPage } = useMovieContext();
 
   useEffect(() => {
     fetchMovies(page);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-    window.scrollTo({ top: 0 });
-  };
+  const handlePageChange = useCallback(
+    (event: React.ChangeEvent<unknown>, value: number) => {
+      setPage(value);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    []
+  );
 
   return (
     <>
@@ -30,11 +31,19 @@ export default function ClientComponent() {
             <Card key={key}>
               <DivImage>
                 <Image
+              
+                  quality={50}
+                  loading="lazy"
+                  width={100}
+                  height={100}
+                  className={styles.imagecard}
                   alt="filme"
-                  src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
+                  src={movie.poster_path ?
+                    `https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}` :
+                    alt
+                  }
                 />
               </DivImage>
-            
               <InfoCard>
                 {movie.title === undefined ? movie.name : movie.title}
               </InfoCard>
@@ -48,7 +57,7 @@ export default function ClientComponent() {
         </ContainerSection2>
       </Section2>
       <Section3>
-        <BasicPag
+        <Pag
           key={`${totalPages}`}
           color="primary"
           count={totalPages > 500 ? 500 : totalPages}
@@ -59,3 +68,4 @@ export default function ClientComponent() {
   );
 }
 
+export default memo(ClientComponent);
