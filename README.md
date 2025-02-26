@@ -6,7 +6,7 @@ Aplicativo de filmes e series, onde e possivel ver um trailer e achar as
 informaçoes mais relevantes de diversos filmes, series e artistas
 favoritos. SITE RESPONSIVO PARA CELULARES
 
- LINK: https://mymoviesandseriestmdb.netlify.app/
+ LINK: https://project-moviedb.vercel.app/
 
 Instalaçao
 node.js/npm e requerido.
@@ -23,12 +23,12 @@ Voce pode optar por baixar esse projeto em seu computador e testar por si mesmo 
 
 Tecnologias ultilizadas : 
 
-* React
+* NextJS
 * Styled-components
 * Material ui
 * Axios
-* React Router Dom
-
+* Next Router
+* JestJs
 
 ## O desafio
 
