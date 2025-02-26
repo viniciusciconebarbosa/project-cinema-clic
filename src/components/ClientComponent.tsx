@@ -31,9 +31,8 @@ function ClientComponent() {
             <Card key={key}>
               <DivImage>
                 <Image
-              
                   quality={50}
-                  loading="lazy"
+                  loading="eager"
                   width={100}
                   height={100}
                   className={styles.imagecard}
