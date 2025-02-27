@@ -6,9 +6,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useMovieContext } from "@/context/MovieContext";
 
-import { useCallback, useEffect, useState } from "react";
 
-export default function SearchForm() {
+
+import { useCallback, useEffect, useState, memo } from "react";
+
+function SearchForm() {
   setTimeout(() => {setLoading(false);}, 500);
   const { genre, query, setGenre, setQuery, setPage } = useMovieContext();
   const [loading, setLoading] = useState(true);
@@ -18,10 +20,10 @@ export default function SearchForm() {
     setPage(1);
   }, []);
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setGenre("");
     setQuery(event.target.value);
-  };
+  },[]);
 
   return (
     <>
@@ -30,7 +32,6 @@ export default function SearchForm() {
           variant="rectangular"
           width="75vw"
           height={56}
-          sx={{ mb: 2 }}
         />
       ) : (
         <Select
@@ -79,3 +80,5 @@ export default function SearchForm() {
     </>
   );
 }
+
+export default memo(SearchForm);
