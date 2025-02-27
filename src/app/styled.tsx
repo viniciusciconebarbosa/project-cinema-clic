@@ -87,13 +87,3 @@ export const Section1 = styled.section`
   }
 `;
 
-export const Footer = styled.footer`
-  text-align: center;
-  background-color: #001e3c;
-  color: white;
-  height: 10vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
