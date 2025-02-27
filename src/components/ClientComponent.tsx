@@ -31,6 +31,7 @@ function ClientComponent() {
           variant="rectangular"
           width="80vw"
           height="80vh"
+          sx={{ mb: 2 }}
         />
       ) : (
         <SectionMovies>

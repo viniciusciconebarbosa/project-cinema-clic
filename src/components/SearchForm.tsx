@@ -32,6 +32,7 @@ function SearchForm() {
           variant="rectangular"
           width="75vw"
           height={56}
+          sx={{ mb: 2 }}
         />
       ) : (
         <Select
