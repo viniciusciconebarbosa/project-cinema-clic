@@ -40,7 +40,7 @@ function ClientComponent() {
               <Image
                 quality={50}
                 loading="eager"
-                width={220} // Defina a largura fixa
+                width={220}
                 height={330}
                 className={styles.imagecard}
                 alt="filme"

@@ -56,7 +56,7 @@ export const Section1 = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 2.5vh;
+  padding: 4.5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

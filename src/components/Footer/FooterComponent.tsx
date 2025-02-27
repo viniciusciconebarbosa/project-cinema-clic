@@ -70,6 +70,7 @@ const FooterComponent: FC = () => {
           <div className={styles.footerCol}>
             <h4>Siga-nos</h4>
             <div className={styles.socialLinks}>
+           
               <a href="#">
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
@@ -81,7 +82,9 @@ const FooterComponent: FC = () => {
               </a>
               <a href="#">
                 <FontAwesomeIcon icon={faLinkedinIn} />
+                
               </a>
+             
             </div>
           </div>
         </div>

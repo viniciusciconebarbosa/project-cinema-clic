@@ -2,12 +2,12 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10px;
   padding: 0vw;
+  font-weight: 400;
   border-radius: 0 0 10px 10px;
   transition: transform 0.5s;
   &:hover {
@@ -17,7 +17,7 @@ export const Card = styled.div`
 
 export const SectionMovies = styled.div`
   text-align: center;
-  padding: 0.5vh;
+  padding: 8.5vh 0;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   align-content: center;
@@ -30,7 +30,7 @@ export const SectionMovies = styled.div`
   }
   @media (min-width: 700px) {
     grid-template-columns: repeat(4, 1fr);
-    width: 80%;
+    width: 70%;
   }
 `;
 
@@ -51,19 +51,19 @@ export const Data = styled.div`
 export const InfoCard = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-  font-weight: 800;
-  font-size: 4.5vw;
+  margin: 10px;
+  font-weight: 400;
+  font-size: 2.5vw;
 
   @media (min-width: 368px) {
     grid-template-columns: repeat(2, 1fr);
-    font-weight: 800;
+    font-weight: 400;
     font-size: 10px;
   }
   @media (min-width: 700px) {
     grid-template-columns: repeat(4, 1fr);
-    font-size: 1.5vw;
-    font-weight: 600;
+    font-size: 1.0vw;
+    font-weight: 400;
   }
 `;
 
