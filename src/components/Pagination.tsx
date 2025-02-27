@@ -1,18 +1,26 @@
 // app/components/pag.tsx
-'use client';
+"use client";
 
 import { Pagination, Stack } from "@mui/material";
 import { memo } from "react";
 
-export const Pag = ({ color, count, onChange }: 
-  { color?: 'primary' | 'secondary' | 'standard'; 
-    count: number; onChange: (event: React.ChangeEvent<unknown>, page: number) => void }) => {
-
+export const Pag = ({
+  color,
+  count,
+  onChange,
+}: {
+  color?: "primary" | "secondary" | "standard";
+  count: number;
+  onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+}) => {
   return (
     <Stack spacing={1}>
-      <Pagination color={color} count={count} onChange={onChange} 
-      size="medium" 
-      siblingCount={3}
+      <Pagination
+        color={color}
+        count={count}
+        onChange={onChange}
+        size="medium"
+        siblingCount={3}
       />
     </Stack>
   );

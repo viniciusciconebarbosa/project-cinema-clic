@@ -1,19 +1,6 @@
 "use client";
 import styled from "styled-components";
 
-export const Section2 = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-`;
-
-export const DivImage = styled.div`
-  height: 80%;
-  width: 80%;
-`;
-
-
 export const Card = styled.div`
   height: 95%;
   display: flex;
@@ -28,9 +15,8 @@ export const Card = styled.div`
   }
 `;
 
-export const ContainerSection2 = styled.div`
+export const SectionMovies = styled.div`
   text-align: center;
-  height: 84%;
   padding: 0.5vh;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -44,6 +30,7 @@ export const ContainerSection2 = styled.div`
   }
   @media (min-width: 700px) {
     grid-template-columns: repeat(4, 1fr);
+    width: 80%;
   }
 `;
 
@@ -80,15 +67,6 @@ export const InfoCard = styled.div`
   }
 `;
 
-export const Section3 = styled.section`
-  text-align: center;
-  height: 10%;
-  width: 100%;
-  padding: 0.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 export const Footer = styled.footer`
   text-align: center;
   background-color: #001e3c;

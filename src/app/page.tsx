@@ -4,15 +4,12 @@ import SearchForm from "../components/SearchForm";
 import { Footer, Header, Main, Section1 } from "./styled";
 import { MovieProvider } from "../context/MovieContext";
 
-const HomeContent = async () => {
+const HomeContent = () => {
   return (
     <>
-      <Header>
-        <div>Filmes e series</div>
-      </Header>
+      <Header>Filmes e series</Header>
       <Main>
         <Section1>
-          <h5></h5>
           <SearchForm />
         </Section1>
         <ClientComponent />

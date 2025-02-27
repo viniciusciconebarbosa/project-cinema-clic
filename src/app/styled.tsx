@@ -15,9 +15,7 @@ export const Header = styled.header`
   font-size: 3em;
   box-shadow: inset 0 0 1em black;
   font-family: "Source Sans Pro", Arial, sans-serif;
-
 `;
-
 
 export const Main = styled.main`
   height: 100%;
@@ -26,11 +24,6 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
-
-export const Checks = styled.div`
-  display: flex;
-  flex-direction: row;
 `;
 
 export const ContainerCheck = styled.div`
@@ -59,7 +52,6 @@ export const input = {
 };
 
 export const Section1 = styled.section`
-  
   color: #64859e;
   text-align: center;
   flex-direction: column;
@@ -97,21 +89,12 @@ export const Section1 = styled.section`
   }
 `;
 
-export const Section3 = styled.section`
-  text-align: center;
-  height: 10%;
-  width: 100%;
-  padding: 0.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 export const Footer = styled.footer`
   text-align: center;
   background-color: #001e3c;
   color: white;
   height: 10vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
