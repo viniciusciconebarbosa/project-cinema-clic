@@ -14,7 +14,7 @@ export const Pag = ({
   onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }) => {
   return (
-    <Stack spacing={1}>
+    <Stack spacing={1}  sx={{ margin: "30px", ul: { display: "flex", justifyContent: "center" } }}>
       <Pagination
         color={color}
         count={count}

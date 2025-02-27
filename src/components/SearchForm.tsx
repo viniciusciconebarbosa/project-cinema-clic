@@ -50,18 +50,21 @@ function SearchForm() {
               bgcolor: "#40658a60",
               "& .MuiFilledInput-root:after": {
                 borderBottomColor: "white", // barra
+                fontWeight: '100',
               },
               "& .MuiInputLabel-root": {
+                fontWeight: '100',
                 color: "white", // label
               },
               "& .MuiInputLabel-root.Mui-focused": {
                 color: "white", // label focado
+                fontWeight: '100',
               },
             }}
           >
             <InputLabel
               id="demo-simple-select-label"
-              sx={{ color: "white" }} // Cor do label quando está parado
+              sx={{ color: "white",fontSize: "0.7rem", }} // Cor do label quando está parado
             >
               Escolha o gênero
             </InputLabel>
@@ -72,6 +75,7 @@ function SearchForm() {
               onChange={handleGenreChange}
               input={<FilledInput />}
               sx={{
+                fontSize: "0.7rem",
                 color: "white", // Cor do texto selecionado
               }}
             >
@@ -114,12 +118,16 @@ function SearchForm() {
             bgcolor: "#40658a60",
             color: "white",
             "& .MuiInputLabel-root": {
+              fontWeight: '100',
+              fontSize: "0.7rem",
               color: "white", // label parado
             },
             "& .MuiFilledInput-root:after": {
+
               borderBottomColor: "white", // barra abaixo
             },
             "& .MuiInputLabel-root.Mui-focused": {
+              fontWeight: '100',
               color: "white", // label focado
             },
           }}

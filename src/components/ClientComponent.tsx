@@ -1,5 +1,4 @@
 "use client";
-
 import Pag from "./Pagination";
 import { useMovieContext } from "@/context/MovieContext";
 import { memo, useCallback, useEffect, useState } from "react";
@@ -50,7 +49,6 @@ function ClientComponent() {
                     : alt
                 }
               />
-
               <InfoCard>
                 {movie.title === undefined ? movie.name : movie.title}
               </InfoCard>
@@ -60,6 +58,7 @@ function ClientComponent() {
                   : movie.release_date}
               </Data>
             </Card>
+            
           ))}
         </SectionMovies>
       )}

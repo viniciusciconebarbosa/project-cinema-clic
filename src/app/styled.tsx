@@ -56,7 +56,7 @@ export const Section1 = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 4.5vh;
+  padding: 5.5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -79,7 +79,15 @@ export const Section1 = styled.section`
   }
 
   div {
-    margin: 4px;
+    margin: 5px 0;
+    padding: auto;
+    border-radius: 4px;
+    
+    div {
+      
+      height: 60px;
+      margin: 1px 0;
+    }
   }
 
   h4 {

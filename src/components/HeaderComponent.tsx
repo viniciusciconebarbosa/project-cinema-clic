@@ -24,13 +24,14 @@ const HeaderComponent: FC = (): ReactElement => {
           />
         ) : (
           <Image
-            src={logo}
+          
+            src={logo.src}
             alt="logo site"
             width={200}
             height={50}
             quality={100}
             loading="eager"
-            layout="fixed" // ou "intrinsic"
+           // ou "intrinsic"
           />
         )}
       </Header>

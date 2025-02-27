@@ -8,8 +8,9 @@ export const Card = styled.div`
   margin: 10px;
   padding: 0vw;
   font-weight: 400;
-  border-radius: 0 0 10px 10px;
   transition: transform 0.5s;
+
+
   &:hover {
     transform: scale(1.1);
   }
@@ -24,20 +25,23 @@ export const SectionMovies = styled.div`
   justify-content: center;
   align-items: center;
   justify-items: normal;
-
+  height: 100%;
+  
   @media (min-width: 368px) {
     grid-template-columns: repeat(2, 1fr);
+    height: 100%;
   }
   @media (min-width: 700px) {
     grid-template-columns: repeat(4, 1fr);
     width: 70%;
+    height: 100%;
   }
 `;
 
 export const Data = styled.div`
   font-weight: 400;
   font-size: 2.5vw;
-
+  border-bottom: 1px solid #d3d3d3;
   @media (min-width: 368px) {
     font-weight: 300;
     font-size: 10px;
@@ -54,7 +58,7 @@ export const InfoCard = styled.div`
   margin: 10px;
   font-weight: 400;
   font-size: 2.5vw;
-
+  border-bottom: 1px solid #d3d3d3;
   @media (min-width: 368px) {
     grid-template-columns: repeat(2, 1fr);
     font-weight: 400;
