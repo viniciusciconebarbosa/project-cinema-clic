@@ -61,10 +61,9 @@ export const Section1 = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   background-position: fixed;
-  background-size: cover; /* Garante que a imagem cubra todo o fundo */
-  position: relative; /* Necessário para o pseudo-elemento */
-
-  /* Adiciona um pseudo-elemento para o efeito de blur */
+  background-size: cover; 
+  position: relative; 
+ 
   &::before {
     content: "";
     position: absolute;
@@ -75,7 +74,7 @@ export const Section1 = styled.section`
     background-image: url(${sheBackGround.src});
     background-position: fixed;
     background-size: cover;
-    z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo */
+    z-index: -1;
   }
 
   div {
@@ -87,6 +86,7 @@ export const Section1 = styled.section`
       
       height: 60px;
       margin: 1px 0;
+      color: #ffffff;
     }
   }
 

@@ -57,17 +57,17 @@ export const InfoCard = styled.div`
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 10px;
   font-weight: 400;
-  font-size: 2.5vw;
+  font-size: "0.5rem";
   border-bottom: 1px solid #d3d3d3;
   @media (min-width: 368px) {
     grid-template-columns: repeat(2, 1fr);
     font-weight: 400;
-    font-size: 10px;
+    fontSize: "0.7rem",
   }
   @media (min-width: 700px) {
     grid-template-columns: repeat(4, 1fr);
     font-size: 1.0vw;
-    font-weight: 400;
+    font-size: "0.5rem";
   }
 `;
 
