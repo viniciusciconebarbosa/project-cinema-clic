@@ -10,10 +10,8 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
   background-color: #001e3c;
-  color: white;
-  font-weight: 200;
-  font-size: 3em;
-  box-shadow: inset 0 0 1em black;
+  align-content: center;
+  box-shadow: inset 0 0 0.5em black;
   font-family: "Source Sans Pro", Arial, sans-serif;
 `;
 
@@ -58,7 +56,7 @@ export const Section1 = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0.5vh;
+  padding: 2.5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

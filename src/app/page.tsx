@@ -3,11 +3,12 @@ import ClientComponent from "../components/ClientComponent";
 import SearchForm from "../components/SearchForm";
 import { Footer, Header, Main, Section1 } from "./styled";
 import { MovieProvider } from "../context/MovieContext";
+import HeaderComponent from "@/components/HeaderComponent";
 
 const HomeContent = () => {
   return (
     <>
-      <Header>Filmes e series</Header>
+      <HeaderComponent/>
       <Main>
         <Section1>
           <SearchForm />
