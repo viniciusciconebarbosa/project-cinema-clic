@@ -9,6 +9,7 @@ import { useMovieContext } from "@/context/MovieContext";
 import { useCallback, useEffect, useState } from "react";
 
 export default function SearchForm() {
+  setTimeout(() => {setLoading(false);}, 500);
   const { genre, query, setGenre, setQuery, setPage } = useMovieContext();
   const [loading, setLoading] = useState(true);
   const handleGenreChange = useCallback((event: SelectChangeEvent) => {
@@ -21,12 +22,6 @@ export default function SearchForm() {
     setGenre("");
     setQuery(event.target.value);
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 400);
-  }, []);
 
   return (
     <>
