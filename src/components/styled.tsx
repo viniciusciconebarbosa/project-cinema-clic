@@ -9,7 +9,11 @@ export const Card = styled.div`
   padding: 0vw;
   font-weight: 400;
   transition: transform 0.5s;
+  img {
 
+    border-radius: 10px;
+
+  }
 
   &:hover {
     transform: scale(1.1);

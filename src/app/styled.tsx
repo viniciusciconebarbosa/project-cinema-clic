@@ -4,7 +4,7 @@ import sheBackGround from "../assets/2sheBackGround.jpg";
 
 export const Header = styled.header`
   text-align: center;
-  height: 10vh;
+  height: 13vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -56,7 +56,7 @@ export const Section1 = styled.section`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 5.5vh;
+  padding: 7.5vh 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -1,5 +1,3 @@
-
-
 import React, { FC } from "react";
 import styles from "./style.module.css"; // Importar o módulo CSS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,21 +70,20 @@ const FooterComponent: FC = () => {
           <div className={styles.footerCol}>
             <h4>Siga-nos</h4>
             <div className={styles.socialLinks}>
-           
-              <a href="#">
-                <FontAwesomeIcon icon={faFacebookF} />
-              </a>
-              <a href="#">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-              <a href="#">
-                <FontAwesomeIcon  icon={faInstagram} />
-              </a>
-              <a href="#">
-                <FontAwesomeIcon icon={faLinkedinIn} />
-                
-              </a>
-             
+              <ul className={styles.footerList}>
+                <a href="#">
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </a>
+                <a href="#">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+                <a href="#">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+                <a href="#">
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </a>
+              </ul>
             </div>
           </div>
         </div>
