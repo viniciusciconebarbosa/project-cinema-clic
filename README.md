@@ -29,6 +29,7 @@ Tecnologias ultilizadas :
 * Axios
 * Next Router
 * JestJs
+* CI/CD
 
 ## O desafio
 
