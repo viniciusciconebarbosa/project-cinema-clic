@@ -67,7 +67,7 @@ function SearchForm() {
       )}
 
       {loading ? (
-        <Skeleton variant="rectangular" width="75vw" height={56} />
+        <Skeleton variant="rectangular" width="75vw" height={56}  sx={{ mb: 2 }} />
       ) : (
         <TextField
           sx={{ width: "75vw", bgcolor: "#40658a60", color: "black" }}
