@@ -94,7 +94,6 @@ Fotos
 
 ![ScreenHunter_10 May  23 00 22](https://user-images.githubusercontent.com/92874088/169737567-07acc282-88ac-42a3-8a98-659bbe9ce28f.jpg)
 
-![ScreenHunter_07 May  23 00 19](https://user-images.githubusercontent.com/92874088/169737602-5ea3aabf-106a-49e6-984f-52c63b991b46.jpg)
 
 ![footer](https://github.com/user-attachments/assets/f018d62d-029a-4d69-9437-6ceb8f19b1dc)
 
