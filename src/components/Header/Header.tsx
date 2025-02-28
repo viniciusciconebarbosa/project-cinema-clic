@@ -63,13 +63,13 @@ const Header = () => {
             <a href="/">Início</a>
           </li>
           <li>
-            <a href="/">Sobre</a>
+            <a href="/">Contato</a>
           </li>
           <li>
             <a href="/">Projetos</a>
           </li>
           <li>
-            <a href="/">Contato</a>
+            <a href="/">Sobre</a>
           </li>
         </ul>
       </nav>
