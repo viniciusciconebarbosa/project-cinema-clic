@@ -4,7 +4,7 @@
 
 Aplicativo de filmes e series, onde e possivel ver um trailer e achar as
 informaçoes mais relevantes de diversos filmes, series e artistas
-favoritos. SITE RESPONSIVO PARA CELULARES
+favoritos. Aplicaçao compativel com dispositivos moveis.
 
  LINK: https://project-moviedb.vercel.app/
 
