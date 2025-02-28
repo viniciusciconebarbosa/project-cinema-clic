@@ -86,7 +86,7 @@ A terminar funcionalidade de filtros
 
 Fotos
 
-![ScreenHunter_12 May  23 00 25](https://user-images.githubusercontent.com/92874088/169737467-61d3a700-0e57-4eb2-9d89-c512844b38fe.jpg)
+![Captura de tela 2025-02-28 024902](https://github.com/user-attachments/assets/9fe15b7e-c090-40d0-aacc-069ab6225d17)
 
 ![ScreenHunter_11 May  23 00 24](https://user-images.githubusercontent.com/92874088/169737523-a8c4db12-6729-4e1f-b7be-88bf562c6f83.jpg)
 
