@@ -1,16 +1,17 @@
 // app/page.tsx
 import ClientComponent from "../components/ClientComponent";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/Search/SearchForm";
 import { Main, Section1 } from "./styled";
 import { MovieProvider } from "../context/MovieContext";
-import HeaderComponent from "@/components/HeaderComponent";
 import { FC, ReactElement } from "react";
 import FooterComponent from "@/components/Footer/FooterComponent";
+import Header from "@/components/Header/Header";
 
 const HomeContent: FC = (): ReactElement => {
+  
   return (
     <>
-      <HeaderComponent/>
+      <Header/>
       <Main>
         <Section1>
           <SearchForm/>

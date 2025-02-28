@@ -1,5 +1,5 @@
 "use client";
-import Pag from "./Pagination";
+import Pag from "./Pagination/Pagination";
 import { useMovieContext } from "@/context/MovieContext";
 import { memo, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
