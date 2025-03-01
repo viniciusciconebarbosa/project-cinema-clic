@@ -82,7 +82,7 @@ A terminar funcionalidade de filtros
 
 Fotos
 
-![ScreenHunter_12 May  23 00 25](https://user-images.githubusercontent.com/92874088/169737467-61d3a700-0e57-4eb2-9d89-c512844b38fe.jpg)
+![Captura de tela 2025-02-28 024902](https://github.com/user-attachments/assets/9fe15b7e-c090-40d0-aacc-069ab6225d17)
 
 ![ScreenHunter_11 May  23 00 24](https://user-images.githubusercontent.com/92874088/169737523-a8c4db12-6729-4e1f-b7be-88bf562c6f83.jpg)
 
@@ -90,7 +90,6 @@ Fotos
 
 ![ScreenHunter_10 May  23 00 22](https://user-images.githubusercontent.com/92874088/169737567-07acc282-88ac-42a3-8a98-659bbe9ce28f.jpg)
 
-![ScreenHunter_07 May  23 00 19](https://user-images.githubusercontent.com/92874088/169737602-5ea3aabf-106a-49e6-984f-52c63b991b46.jpg)
 
-![ScreenHunter_13 May  23 00 27](https://user-images.githubusercontent.com/92874088/169737728-d0557087-6fe6-4e0b-a11a-9caba5f23270.jpg)
+![footer](https://github.com/user-attachments/assets/f018d62d-029a-4d69-9437-6ceb8f19b1dc)
 
