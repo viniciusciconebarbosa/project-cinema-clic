@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./header.module.css"; // Importar o módulo CSS
-import logo from "../../assets/logoSmall.jpg";
+import logo from "../../assets/logoSmall.png";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
 
@@ -29,7 +29,7 @@ const Header = () => {
       ></div>
       <nav className={styles.nav}>
         <a className={styles.logo} href="/">
-          BEM VINDO
+          Home
         </a>
 
         {loading ? (
@@ -43,8 +43,8 @@ const Header = () => {
           <Image
             src={logo.src}
             alt="logo site"
-            width={200}
-            height={50}
+            width={110}
+            height={60}
             quality={100}
             loading="eager"
             // ou "intrinsic"

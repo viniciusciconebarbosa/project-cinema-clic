@@ -16,14 +16,20 @@
 
 .nav {
   display: flex;
-  color: #fff;
   justify-content: space-around;
   align-items: center;
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-  background: #001e3c;
+  background-color:#4f4f4f41;
+  backdrop-filter: blur(10px);
   height: 14vh;
-  position: relative; /* Adicionar position relative */
-  z-index: 2; /* Certifica-se de que o header está acima do fundo escurecido */
+  position: fixed; 
+  z-index: 2;
+  top: 0;
+  color: #fff;
+  left: 0;
+  width: 100%;
+  zIndex: 1000;
+  padding: 0 
 }
 
 
@@ -38,7 +44,7 @@
   width: 40vw;
   height: 82vh;
   border-radius: 0% 100% 0% 100% / 100% 0% 100% 24%;
-  background: #001e3c;
+  background: #5f606073;
   flex-direction: column;
   align-items: end;
   justify-content: space-around;
