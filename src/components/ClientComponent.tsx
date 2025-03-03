@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 import { SectionMovies, Data, InfoCard, Card } from "./styled";
 import alt from "../assets/altmovie.jpg";
 import { Skeleton } from "@mui/material";
+import Link from "next/link";
 
 function ClientComponent() {
   const { movies, totalPages, fetchMovies, page, setPage } = useMovieContext();
@@ -35,30 +36,31 @@ function ClientComponent() {
       ) : (
         <SectionMovies>
           {movies.map((movie, key) => (
-            <Card key={key}>
-              <Image
-                quality={50}
-                loading="eager"
-                width={220}
-                height={330}
-                className={styles.imagecard}
-                alt="filme"
-                src={
-                  movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`
-                    : alt
-                }
-              />
-              <InfoCard>
-                {movie.title === undefined ? movie.name : movie.title}
-              </InfoCard>
-              <Data>
-                {movie.release_date === undefined
-                  ? movie.first_air_date
-                  : movie.release_date}
-              </Data>
-            </Card>
-            
+            <Link href={`/details/${movie.id}`} key={key}>
+              <Card key={key}>
+                <Image
+                  quality={50}
+                  loading="eager"
+                  width={220}
+                  height={330}
+                  className={styles.imagecard}
+                  alt="filme"
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`
+                      : alt
+                  }
+                />
+                <InfoCard>
+                  {movie.title === undefined ? movie.name : movie.title}
+                </InfoCard>
+                <Data>
+                  {movie.release_date === undefined
+                    ? movie.first_air_date
+                    : movie.release_date}
+                </Data>
+              </Card>
+            </Link>
           ))}
         </SectionMovies>
       )}
