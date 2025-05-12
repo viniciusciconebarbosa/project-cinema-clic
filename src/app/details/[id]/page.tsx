@@ -1,13 +1,27 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getMovieDetails, getMovieImages, getMovieVideos, getTVDetails, getTVImages, getTVVideos } from "@/lib/api";
+import { 
+  getMovieDetails, 
+  getMovieImages, 
+  getMovieVideos, 
+  getTVDetails, 
+  getTVImages, 
+  getTVVideos,
+  getMovieReviews,
+  getTVReviews
+} from "@/lib/api";
 import DetailPage from "../../../components/DetailPage";
+import LoadingComponent from "@/components/Loading/LoadingComponent";
+import Header from "@/components/Header/Header";
+import { Box } from "@mui/material";
+import FooterComponent from "@/components/Footer/FooterComponent";
 
 interface Params {
   id: string;
 }
 
 interface MovieDetails {
+  id: number;
   title?: string;
   name?: string;
   poster_path: string;
@@ -32,6 +46,8 @@ interface MovieDetails {
       poster_path: string | null;
     }>;
   };
+  status?: string;
+  production_companies?: Array<{ name: string }>;
 }
 
 interface MovieImages {
@@ -52,6 +68,17 @@ interface DataType {
   details: MovieDetails;
   images: MovieImages;
   videos: MovieVideos;
+  reviews: {
+    results: Array<{
+      author: string;
+      author_details: {
+        avatar_path: string | null;
+        rating: number;
+      };
+      content: string;
+      created_at: string;
+    }>;
+  };
 }
 
 interface DetailPageWrapperProps {
@@ -62,14 +89,16 @@ async function fetchMovieData(id: string): Promise<DataType> {
   const details = await getMovieDetails(id);
   const images = await getMovieImages(id);
   const videos = await getMovieVideos(id);
-  return { details, images, videos };
+  const reviews = await getMovieReviews(id);
+  return { details, images, videos, reviews };
 }
 
 async function fetchTVData(id: string): Promise<DataType> {
   const details = await getTVDetails(id);
   const images = await getTVImages(id);
   const videos = await getTVVideos(id);
-  return { details, images, videos };
+  const reviews = await getTVReviews(id);
+  return { details, images, videos, reviews };
 }
 
 export default function DetailPageWrapper({ params }: DetailPageWrapperProps) {
@@ -80,11 +109,11 @@ export default function DetailPageWrapper({ params }: DetailPageWrapperProps) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { id } = await params; // Resolve a Promise `params`
+        const { id } = await params;
         setData(await fetchMovieData(id));
       } catch (error) {
         try {
-          const { id } = await params; // Resolve a Promise `params`
+          const { id } = await params;
           setData(await fetchTVData(id));
         } catch (tvError) {
           console.error("Erro ao buscar dados:", tvError);
@@ -97,9 +126,22 @@ export default function DetailPageWrapper({ params }: DetailPageWrapperProps) {
     fetchData();
   }, [params]);
 
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return <LoadingComponent />;
   if (error) return <div>{error}</div>;
-  if (!data) return <div>Dados não encontrados.</div>; // Verifica se data não é null
+  if (!data) return <div>Dados não encontrados.</div>;
 
-  return <DetailPage details={data.details} images={data.images} videos={data.videos} />;
+  return (
+    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
+      <Header />
+      <Box component="main" sx={{ flexGrow: 1 }}>
+        <DetailPage 
+          details={data.details} 
+          images={data.images} 
+          videos={data.videos} 
+          reviews={data.reviews}
+        />
+      </Box>
+      <FooterComponent />
+    </Box>
+  );
 }

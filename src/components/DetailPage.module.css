@@ -126,3 +126,49 @@
   line-height: 1.2;
 }
 
+.reviewsSection {
+  margin-top: 2rem;
+}
+
+.reviewsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.reviewsHeader h2 {
+  color: #F6E27A;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.languageSelect {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  min-width: 150px;
+}
+
+.languageSelect:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.languageSelect:focus {
+  border-color: #F6E27A;
+  box-shadow: 0 0 0 2px rgba(246, 226, 122, 0.2);
+}
+
+.languageSelect option {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 0.5rem;
+}
+

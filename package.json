@@ -22,6 +22,7 @@
     "@types/styled-components": "^5.1.34",
     "axios": "^1.7.9",
     "babel-plugin-styled-components": "^2.1.4",
+    "date-fns": "^4.1.0",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

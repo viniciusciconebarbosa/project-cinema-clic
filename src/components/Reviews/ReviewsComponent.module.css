@@ -1,0 +1,87 @@
+.reviewsContainer {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.reviewsTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.reviewsGrid {
+  
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  
+}
+
+.reviewCard {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.reviewCard:hover {
+  transform: translateY(-5px);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.reviewAuthor {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0;
+}
+
+.rating {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.reviewContent {
+  color: #ccc;
+  margin: 0;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+.reviewContent p {
+  margin: 0;
+}
+
+.translateButtonContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.translateButtonContainer button {
+  transition: transform 0.2s;
+}
+
+.translateButtonContainer button:hover {
+  transform: scale(1.1);
+}
+
+.reviewDate {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: right;
+} 

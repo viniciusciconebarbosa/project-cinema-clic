@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Carousel } from "react-responsive-carousel"
@@ -23,14 +23,77 @@ import LanguageIcon from '@mui/icons-material/Language'
 import MoneyIcon from '@mui/icons-material/Money'
 import StarIcon from '@mui/icons-material/Star'
 import styles from "./DetailPage.module.css"
+import ReviewsComponent from './Reviews/ReviewsComponent'
+import { getMovieReviews, getTVReviews } from "@/lib/api"
 
-interface DetailPageProps {
-  details: any
-  images: any
-  videos: any
+interface Review {
+  author: string;
+  author_details: {
+    avatar_path: string | null;
+    rating: number;
+  };
+  content: string;
+  created_at: string;
 }
 
-const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
+interface Reviews {
+  results: Review[];
+}
+
+interface DetailPageProps {
+  details: {
+    id: number;
+    title?: string;
+    name?: string;
+    poster_path: string;
+    backdrop_path: string;
+    overview: string;
+    vote_average: number;
+    vote_count: number;
+    genres: Array<{ id: number; name: string }>;
+    credits: {
+      cast: Array<{
+        id: number;
+        name: string;
+        character: string;
+        profile_path: string | null;
+      }>;
+    };
+    similar: {
+      results: Array<{
+        id: number;
+        title?: string;
+        name?: string;
+        poster_path: string | null;
+      }>;
+    };
+    release_date?: string;
+    first_air_date?: string;
+    runtime?: number;
+    original_language?: string;
+    budget?: number;
+    status?: string;
+    production_companies?: Array<{ name: string }>;
+  };
+  images: {
+    backdrops: Array<{
+      file_path: string;
+    }>;
+  };
+  videos: {
+    results: Array<{
+      key: string;
+      name: string;
+      type: string;
+    }>;
+  };
+  reviews: Reviews;
+}
+
+const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, reviews: initialReviews }) => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('');
+  const [reviews, setReviews] = useState<Reviews>(initialReviews);
+
   const isMovie = details.title !== undefined
 
   const formatCurrency = (value: number) => {
@@ -40,8 +103,18 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
     }).format(value)
   }
 
+  const handleLanguageChange = async (language: string) => {
+    setSelectedLanguage(language);
+    try {
+      const newReviews = await getMovieReviews(details.id.toString(), language);
+      setReviews(newReviews);
+    } catch (error) {
+      console.error('Erro ao buscar reviews:', error);
+    }
+  };
+
   return (
-    <Container maxWidth="xl" sx={{ py: 4, mt: 8 }}>
+    <Container maxWidth="xl" sx={{ py: 4, mt: 13 }}>
       <Paper 
         elevation={3}
         sx={{
@@ -58,8 +131,8 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
           <Grid item xs={12} md={4}>
             <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', boxShadow: '0 8px 16px rgba(0,0,0,0.4)' }}>
               <Image
-                src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
-                alt={details.title || details.name}
+                src={`https://image.tmdb.org/t/p/w500${details.poster_path || ''}`}
+                alt={details.title || details.name || ''}
                 width={500}
                 height={750}
                 style={{ width: '100%', height: 'auto' }}
@@ -76,7 +149,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
                 </Typography>
               </Box>
               
-              {isMovie && (
+              {isMovie && details.runtime && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <AccessTimeIcon />
                   <Typography>
@@ -94,7 +167,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
                 </Box>
               )}
 
-              {details.budget > 0 && (
+              {details.budget && details.budget > 0 && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <MoneyIcon />
                   <Typography>
@@ -199,7 +272,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
                     </Typography>
                   </Paper>
                 </Grid>
-                {details.production_companies?.length > 0 && (
+                {details.production_companies && details.production_companies.length > 0 && (
                   <Grid item xs={12} sm={6}>
                     <Paper sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
                       <Typography variant="subtitle2" color="grey.400">
@@ -324,7 +397,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
             </Typography>
             <Grid container spacing={2}>
               {videos.results.slice(0, 3).map((video: any) => (
-                <Grid item xs={12} md={4} key={video.id}>
+                <Grid item xs={12} md={4} key={video.key}>
                   <Paper 
                     sx={{ 
                       position: 'relative',
@@ -393,7 +466,6 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
                         width={220}
                         height={330}
                         className={styles.imagecard}
-          
                       />
                       <Box sx={{ p: 1 }}>
                         <Typography 
@@ -415,10 +487,33 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
             </Grid>
           </Box>
         )}
+
+        {/* Reviews */}
+        <div className={styles.reviewsSection}>
+          <div className={styles.reviewsHeader}>
+            <h2>Comentários</h2>
+            <select 
+              value={selectedLanguage} 
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              className={styles.languageSelect}
+            >
+              <option value="">Todos os idiomas</option>
+              <option value="pt-BR">Português</option>
+              <option value="en-US">Inglês</option>
+              <option value="es-ES">Espanhol</option>
+              <option value="fr-FR">Francês</option>
+              <option value="de-DE">Alemão</option>
+              <option value="it-IT">Italiano</option>
+              <option value="ja-JP">Japonês</option>
+              <option value="ko-KR">Coreano</option>
+              <option value="zh-CN">Chinês</option>
+            </select>
+          </div>
+          <ReviewsComponent reviews={reviews.results} />
+        </div>
       </Paper>
     </Container>
   )
 }
 
 export default DetailPage
-

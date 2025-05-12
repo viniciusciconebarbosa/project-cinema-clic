@@ -34,7 +34,7 @@ const Header = () => {
         <Link className={styles.logo} href="/">
           <LocalMovies sx={{ fontSize: 40 }} />
           <Typography variant="h6" component="h1">
-            MovieDB
+            CinemaClic
           </Typography>
         </Link>
 
@@ -46,7 +46,7 @@ const Header = () => {
             sx={{ mb: 2 }}
           />
         ) : (
-          <div className={styles.logoContainer}>
+          
             <Image
               src={logo.src}
               alt="logo site"
@@ -55,7 +55,7 @@ const Header = () => {
               quality={100}
               loading="eager"
             />
-          </div>
+          
         )}
         <div
           className={`${styles.mobileMenu} ${isActive ? styles.active : ""}`}
@@ -70,13 +70,13 @@ const Header = () => {
             <Link href="/">Início</Link>
           </li>
           <li>
-            <Link href="/">Contato</Link>
+            <Link href="/movies">Filmes</Link>
           </li>
           <li>
-            <Link href="/">Projetos</Link>
+            <Link href="/series">Séries</Link>
           </li>
           <li>
-            <Link href="/">Sobre</Link>
+            <Link href="/about">Sobre</Link>
           </li>
         </ul>
       </nav>
