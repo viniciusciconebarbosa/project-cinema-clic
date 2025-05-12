@@ -1,9 +1,27 @@
 "use client"
-import type React from "react"
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Paper,
+  Rating,
+  Chip,
+  Divider,
+  Skeleton,
+  LinearProgress,
+  Stack
+} from "@mui/material"
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
+import LanguageIcon from '@mui/icons-material/Language'
+import MoneyIcon from '@mui/icons-material/Money'
+import StarIcon from '@mui/icons-material/Star'
 import styles from "./DetailPage.module.css"
 
 interface DetailPageProps {
@@ -15,118 +33,390 @@ interface DetailPageProps {
 const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos }) => {
   const isMovie = details.title !== undefined
 
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(value)
+  }
+
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>{details.title || details.name}</h1>
+    <Container maxWidth="xl" sx={{ py: 4, mt: 8 }}>
+      <Paper 
+        elevation={3}
+        sx={{
+          p: 4,
+          background: 'linear-gradient(135deg, #001e3c 0%, #0a1929 100%)',
+          color: 'white',
+          borderRadius: 2,
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Poster e Informações Principais */}
+          <Grid item xs={12} md={4}>
+            <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', boxShadow: '0 8px 16px rgba(0,0,0,0.4)' }}>
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
+                alt={details.title || details.name}
+                width={500}
+                height={750}
+                style={{ width: '100%', height: 'auto' }}
+                priority
+              />
+            </Box>
+            
+            {/* Informações Rápidas */}
+            <Stack spacing={2} sx={{ mt: 3 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <CalendarTodayIcon />
+                <Typography>
+                  {details.release_date || details.first_air_date}
+                </Typography>
+              </Box>
+              
+              {isMovie && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <AccessTimeIcon />
+                  <Typography>
+                    {Math.floor(details.runtime / 60)}h {details.runtime % 60}min
+                  </Typography>
+                </Box>
+              )}
 
-      <div className={styles.mainContent}>
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
-          alt={details.title || details.name}
-          width={300}
-          height={450}
-          className={styles.poster}
-        />
-        <div className={styles.info}>
-          <p className={styles.overview}>{details.overview}</p>
-          <p>
-            <strong>Data de Lançamento:</strong> {details.release_date || details.first_air_date}
-          </p>
-          <p>
-            <strong>Avaliação:</strong> {details.vote_average.toFixed(1)}/10
-          </p>
-          <p>
-            <strong>Gêneros:</strong> {details.genres.map((genre: any) => genre.name).join(", ")}
-          </p>
-          {isMovie ? (
-            <p>
-              <strong>Duração:</strong> {Math.floor(details.runtime / 60)}h {details.runtime % 60}min
-            </p>
-          ) : (
-            <p>
-              <strong>Número de Temporadas:</strong> {details.number_of_seasons}
-            </p>
-          )}
-          <p>
-            <strong>Status:</strong> {details.status}
-          </p>
-          {details.production_companies && details.production_companies.length > 0 && (
-            <p>
-              <strong>Produtoras:</strong> {details.production_companies.map((company: any) => company.name).join(", ")}
-            </p>
-          )}
-        </div>
-      </div>
+              {details.original_language && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <LanguageIcon />
+                  <Typography>
+                    {new Intl.DisplayNames(['pt'], { type: 'language' }).of(details.original_language)}
+                  </Typography>
+                </Box>
+              )}
 
-      <h2 className={styles.sectionTitle}>Elenco Principal</h2>
-      <div className={styles.castGrid}>
-        {details.credits.cast.slice(0, 6).map((actor: any) => (
-          <div key={actor.id} className={styles.castMember}>
-            <Image
-              src={actor.profile_path ? `https://image.tmdb.org/t/p/w185${actor.profile_path}` : "/placeholder.svg"}
-              alt={actor.name}
-              width={100}
-              height={150}
-              className={styles.actorImage}
-            />
-            <p className={styles.actorName}>{actor.name}</p>
-            <p className={styles.characterName}>{actor.character}</p>
-          </div>
-        ))}
-      </div>
+              {details.budget > 0 && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <MoneyIcon />
+                  <Typography>
+                    Orçamento: {formatCurrency(details.budget)}
+                  </Typography>
+                </Box>
+              )}
+            </Stack>
+          </Grid>
 
-      <h2 className={styles.sectionTitle}>Galeria</h2>
-      <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} className={styles.carousel}>
-        {images.backdrops.slice(0, 10).map((image: any, index: number) => (
-          <div key={index}>
-            <Image
-              src={`https://image.tmdb.org/t/p/w1920${image.file_path}`}
-              alt={`Backdrop ${index + 1}`}
-              width={1280}
-              height={720}
-              layout="responsive"
-            />
-          </div>
-        ))}
-      </Carousel>
+          {/* Conteúdo Principal */}
+          <Grid item xs={12} md={8}>
+            <Typography 
+              variant="h3" 
+              component="h1" 
+              gutterBottom
+              sx={{ 
+                fontFamily: 'Poppins',
+                fontWeight: 600,
+                background: 'linear-gradient(to right, #CB9B51, #F6E27A)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                mb: 2
+              }}
+            >
+              {details.title || details.name}
+            </Typography>
 
-      {videos.results.length > 0 && (
-        <>
-          <h2 className={styles.sectionTitle}>Trailers</h2>
-          <div className={styles.trailers}>
-            {videos.results.slice(0, 3).map((video: any) => (
-              <iframe
-                key={video.id}
-                width="560"
-                height="315"
-                src={`https://www.youtube.com/embed/${video.key}`}
-                title={video.name}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className={styles.trailer}
-              ></iframe>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+              <Rating
+                value={details.vote_average / 2}
+                precision={0.5}
+                readOnly
+                icon={<StarIcon sx={{ color: '#F6E27A' }} />}
+                emptyIcon={<StarIcon sx={{ color: 'grey.500' }} />}
+              />
+              <Typography variant="body1">
+                {details.vote_average.toFixed(1)}/10 ({details.vote_count} votos)
+              </Typography>
+            </Box>
+
+            <Box sx={{ mb: 3 }}>
+              {details.genres.map((genre: any) => (
+                <Chip
+                  key={genre.id}
+                  label={genre.name}
+                  sx={{
+                    m: 0.5,
+                    background: 'linear-gradient(to right, #CB9B51, #F6E27A)',
+                    color: '#000',
+                    fontWeight: 500
+                  }}
+                />
+              ))}
+            </Box>
+
+            <Typography 
+              variant="h6" 
+              gutterBottom 
+              sx={{ 
+                color: '#F6E27A',
+                fontFamily: 'Poppins',
+                mb: 2 
+              }}
+            >
+              Sinopse
+            </Typography>
+            <Typography 
+              variant="body1" 
+              paragraph
+              sx={{ 
+                fontSize: '1.1rem',
+                lineHeight: 1.8,
+                color: 'grey.100'
+              }}
+            >
+              {details.overview || "Sinopse não disponível."}
+            </Typography>
+
+            {/* Status e Informações Adicionais */}
+            <Box sx={{ mt: 4 }}>
+              <Typography 
+                variant="h6" 
+                gutterBottom
+                sx={{ 
+                  color: '#F6E27A',
+                  fontFamily: 'Poppins',
+                  mb: 2 
+                }}
+              >
+                Informações Adicionais
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Paper sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
+                    <Typography variant="subtitle2" color="grey.400">
+                      Status
+                    </Typography>
+                    <Typography variant="body1">
+                      {details.status}
+                    </Typography>
+                  </Paper>
+                </Grid>
+                {details.production_companies?.length > 0 && (
+                  <Grid item xs={12} sm={6}>
+                    <Paper sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
+                      <Typography variant="subtitle2" color="grey.400">
+                        Produtoras
+                      </Typography>
+                      <Typography variant="body1">
+                        {details.production_companies.map((company: any) => company.name).join(", ")}
+                      </Typography>
+                    </Paper>
+                  </Grid>
+                )}
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+
+        {/* Elenco */}
+        <Box sx={{ mt: 6 }}>
+          <Typography 
+            variant="h5" 
+            gutterBottom
+            sx={{ 
+              color: '#F6E27A',
+              fontFamily: 'Poppins',
+              mb: 3 
+            }}
+          >
+            Elenco Principal
+          </Typography>
+          <Grid container spacing={2}>
+            {details.credits.cast.slice(0, 6).map((actor: any) => (
+              <Grid item xs={6} sm={4} md={2} key={actor.id}>
+                <Paper 
+                  sx={{ 
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)'
+                    }
+                  }}
+                >
+                  <Image
+                    src={actor.profile_path 
+                      ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+                      : "/placeholder.svg"
+                    }
+                    alt={actor.name}
+                    width={185}
+                    height={278}
+                    style={{ width: '100%', height: 'auto' }}
+                  />
+                  <Box sx={{ p: 1 }}>
+                    <Typography variant="subtitle2" noWrap>
+                      {actor.name}
+                    </Typography>
+                    <Typography variant="caption" color="grey.400" noWrap>
+                      {actor.character}
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Grid>
             ))}
-          </div>
-        </>
-      )}
+          </Grid>
+        </Box>
 
-      <h2 className={styles.sectionTitle}>{isMovie ? "Filmes Relacionados" : "Séries Relacionadas"}</h2>
-      <div className={styles.relatedGrid}>
-        {details.similar.results.slice(0, 6).map((item: any) => (
-          <Link href={`/details/${item.id}`} key={item.id} className={styles.relatedItem}>
-            <Image
-              src={item.poster_path ? `https://image.tmdb.org/t/p/w185${item.poster_path}` : "/placeholder.svg"}
-              alt={item.title || item.name}
-              width={100}
-              height={150}
-              className={styles.relatedImage}
-            />
-            <p className={styles.relatedTitle}>{item.title || item.name}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
+        {/* Galeria */}
+        {images.backdrops.length > 0 && (
+          <Box sx={{ mt: 6 }}>
+            <Typography 
+              variant="h5" 
+              gutterBottom
+              sx={{ 
+                color: '#F6E27A',
+                fontFamily: 'Poppins',
+                mb: 3 
+              }}
+            >
+              Galeria
+            </Typography>
+            <Carousel
+              showThumbs={false}
+              showStatus={false}
+              infiniteLoop={true}
+              autoPlay={true}
+              interval={5000}
+              stopOnHover={true}
+              swipeable={true}
+              dynamicHeight={false}
+              className="presentation-mode"
+            >
+              {images.backdrops.slice(0, 10).map((image: any, index: number) => (
+                <div key={index}>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original${image.file_path}`}
+                    alt={`Imagem ${index + 1}`}
+                    width={1920}
+                    height={1080}
+                    style={{ width: '100%', height: 'auto' }}
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </Box>
+        )}
+
+        {/* Trailers */}
+        {videos.results.length > 0 && (
+          <Box sx={{ mt: 6 }}>
+            <Typography 
+              variant="h5" 
+              gutterBottom
+              sx={{ 
+                color: '#F6E27A',
+                fontFamily: 'Poppins',
+                mb: 3 
+              }}
+            >
+              Trailers e Vídeos
+            </Typography>
+            <Grid container spacing={2}>
+              {videos.results.slice(0, 3).map((video: any) => (
+                <Grid item xs={12} md={4} key={video.id}>
+                  <Paper 
+                    sx={{ 
+                      position: 'relative',
+                      paddingTop: '56.25%', // 16:9 Aspect Ratio
+                      bgcolor: 'rgba(255,255,255,0.05)',
+                      borderRadius: 2,
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <iframe
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 0
+                      }}
+                      src={`https://www.youtube.com/embed/${video.key}`}
+                      title={video.name}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </Paper>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
+
+        {/* Filmes/Séries Relacionados */}
+        {details.similar.results.length > 0 && (
+          <Box sx={{ mt: 6 }}>
+            <Typography 
+              variant="h5" 
+              gutterBottom
+              sx={{ 
+                color: '#F6E27A',
+                fontFamily: 'Poppins',
+                mb: 3 
+              }}
+            >
+              {isMovie ? "Filmes Relacionados" : "Séries Relacionadas"}
+            </Typography>
+            <Grid container spacing={2}>
+              {details.similar.results.slice(0, 6).map((item: any) => (
+                <Grid item xs={6} sm={4} md={2} key={item.id}>
+                  <Link href={`/details/${item.id}`} style={{ textDecoration: 'none' }}>
+                    <Paper
+                      sx={{
+                        bgcolor: 'rgba(255,255,255,0.05)',
+                        borderRadius: 2,
+                        overflow: 'hidden',
+                        transition: 'transform 0.2s',
+                        '&:hover': {
+                          transform: 'translateY(-4px)'
+                        }
+                      }}
+                    >
+                      <Image
+                        src={item.poster_path 
+                          ? `https://image.tmdb.org/t/p/w185${item.poster_path}`
+                          : "/placeholder.svg"
+                        }
+                        alt={item.title || item.name}
+                        width={220}
+                        height={330}
+                        className={styles.imagecard}
+          
+                      />
+                      <Box sx={{ p: 1 }}>
+                        <Typography 
+                          variant="subtitle2"
+                          sx={{ 
+                            color: 'white',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          {item.title || item.name}
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
+      </Paper>
+    </Container>
   )
 }
 
