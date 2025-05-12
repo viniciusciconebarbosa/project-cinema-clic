@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./Header.module.css"; // Importar o módulo CSS
+import styles from "./header.module.css"; // Importar o módulo CSS
 import logo from "../../assets/logoSmall.png";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
