@@ -316,24 +316,31 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                     }
                   }}
                 >
-                  <Image
-                    src={actor.profile_path 
-                      ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-                      : "/placeholder.svg"
-                    }
-                    alt={actor.name}
-                    width={185}
-                    height={278}
-                    style={{ width: '100%', height: 'auto' }}
-                  />
-                  <Box sx={{ p: 1 }}>
-                    <Typography variant="subtitle2" noWrap>
-                      {actor.name}
-                    </Typography>
-                    <Typography variant="caption" color="grey.400" noWrap>
-                      {actor.character}
-                    </Typography>
-                  </Box>
+                  <a 
+                    href={`https://google.com/search?q=${encodeURIComponent(actor.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    <Image
+                      src={actor.profile_path 
+                        ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+                        : "/placeholder.svg"
+                      }
+                      alt={actor.name}
+                      width={185}
+                      height={278}
+                      style={{ width: '100%', height: 'auto' }}
+                    />
+                    <Box sx={{ p: 1 }}>
+                      <Typography variant="subtitle2" noWrap>
+                        {actor.name}
+                      </Typography>
+                      <Typography variant="caption" color="grey.400" noWrap>
+                        {actor.character}
+                      </Typography>
+                    </Box>
+                  </a>
                 </Paper>
               </Grid>
             ))}
