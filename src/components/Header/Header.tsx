@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./header.module.css"; // Importar o módulo CSS
+import styles from "./Header.module.css"; // Importar o módulo CSS
 import logo from "../../assets/logoSmall.png";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
+import Link from 'next/link';
+import LocalMovies from '@mui/icons-material/LocalMovies';
+import { Typography, Box } from "@mui/material";
 
 const Header = () => {
   setTimeout(() => {
@@ -28,9 +31,12 @@ const Header = () => {
         onClick={handleOverlayClick}
       ></div>
       <nav className={styles.nav}>
-        <a className={styles.logo} href="/">
-          HOME
-        </a>
+        <Link className={styles.logo} href="/">
+          <LocalMovies sx={{ fontSize: 40 }} />
+          <Typography variant="h6" component="h1">
+            MovieDB
+          </Typography>
+        </Link>
 
         {loading ? (
           <Skeleton
@@ -47,7 +53,7 @@ const Header = () => {
               width={110}
               height={60}
               quality={100}
-            loading="eager"
+              loading="eager"
             />
           </div>
         )}
@@ -61,16 +67,16 @@ const Header = () => {
         </div>
         <ul className={`${styles.navList} ${isActive ? styles.active : ""}`}>
           <li>
-            <a href="/">Início</a>
+            <Link href="/">Início</Link>
           </li>
           <li>
-            <a href="/">Contato</a>
+            <Link href="/">Contato</Link>
           </li>
           <li>
-            <a href="/">Projetos</a>
+            <Link href="/">Projetos</Link>
           </li>
           <li>
-            <a href="/">Sobre</a>
+            <Link href="/">Sobre</Link>
           </li>
         </ul>
       </nav>

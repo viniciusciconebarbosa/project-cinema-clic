@@ -1,5 +1,5 @@
 "use client";
-import Pag from "./Pagination/Pagination";
+import Pagination from "./Pagination/Pagination";
 import { useMovieContext } from "@/context/MovieContext";
 import { memo, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
@@ -22,11 +22,12 @@ function ClientComponent() {
         window.scrollTo({ top: position, behavior: "smooth" });
       }
     },
-    []
+    [setPage]
   );
+
   useEffect(() => {
     fetchMovies(page).then(() => setLoading(false));
-  }, [page]);
+  }, [page, fetchMovies]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
@@ -69,7 +70,7 @@ function ClientComponent() {
         </SectionMovies>
       )}
       <Box sx={{ mt: 4, mb: 4 }}>
-        <Pag
+        <Pagination
           key={`${totalPages}`}
           color="primary"
           count={totalPages > 500 ? 500 : totalPages}

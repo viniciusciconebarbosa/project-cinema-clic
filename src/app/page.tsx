@@ -1,7 +1,7 @@
 // app/page.tsx
 "use client"
 
-import { Box, Container, Typography, Paper, Grid, Divider, Chip } from '@mui/material';
+import { Box, Container, Typography, Paper, Grid } from '@mui/material';
 import ClientComponent from "../components/ClientComponent";
 import SearchForm from "../components/Search/SearchForm";
 import { MovieProvider, useMovieContext } from "../context/MovieContext";

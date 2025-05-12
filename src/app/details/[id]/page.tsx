@@ -7,14 +7,55 @@ interface Params {
   id: string;
 }
 
-interface DetailPageWrapperProps {
-  params: Promise<Params>; // Agora `params` é uma Promise
+interface MovieDetails {
+  title?: string;
+  name?: string;
+  poster_path: string;
+  backdrop_path: string;
+  overview: string;
+  vote_average: number;
+  vote_count: number;
+  genres: Array<{ id: number; name: string }>;
+  credits: {
+    cast: Array<{
+      id: number;
+      name: string;
+      character: string;
+      profile_path: string | null;
+    }>;
+  };
+  similar: {
+    results: Array<{
+      id: number;
+      title?: string;
+      name?: string;
+      poster_path: string | null;
+    }>;
+  };
+}
+
+interface MovieImages {
+  backdrops: Array<{
+    file_path: string;
+  }>;
+}
+
+interface MovieVideos {
+  results: Array<{
+    key: string;
+    name: string;
+    type: string;
+  }>;
 }
 
 interface DataType {
-  details: any;
-  images: any;
-  videos: any;
+  details: MovieDetails;
+  images: MovieImages;
+  videos: MovieVideos;
+}
+
+interface DetailPageWrapperProps {
+  params: Promise<Params>; // Agora `params` é uma Promise
 }
 
 async function fetchMovieData(id: string): Promise<DataType> {

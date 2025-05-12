@@ -115,9 +115,10 @@
 .relatedImage {
   border-radius: 8px;
   margin-bottom: 0.5rem;
-  img {
-    height: 315px;
-  }
+}
+
+.relatedImage img {
+  height: 315px;
 }
 
 .relatedTitle {
