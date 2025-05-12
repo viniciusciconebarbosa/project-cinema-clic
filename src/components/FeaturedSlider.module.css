@@ -1,6 +1,22 @@
 .sliderContainer {
-  background-color: rgba(0, 0, 0, 0.352);
-  padding-top: 98px;
+  background-color: rgba(27, 27, 27, 0.352);
+  position: relative;
+  width: 100%;
+  margin-top: 14vh;
+  max-height: 720px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .sliderTitle {
@@ -30,7 +46,17 @@
 
 .slide {
   position: relative;
-  
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .slideContent {
@@ -45,7 +71,6 @@
   backdrop-filter: blur(5px);
   background: rgba(0, 0, 0, 0.341);
   color: #ebeff2;
-
   bottom: 5%;
 
   @media screen and (max-width: 1000px) {

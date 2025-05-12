@@ -10,9 +10,7 @@ export const Card = styled.div`
   font-weight: 400;
   transition: transform 0.5s;
   img {
-
     border-radius: 10px;
-
   }
 
   &:hover {
@@ -21,24 +19,27 @@ export const Card = styled.div`
 `;
 
 export const SectionMovies = styled.div`
-  text-align: center;
-  padding: 8.5vh 0;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  align-content: center;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
   justify-content: center;
-  align-items: center;
-  justify-items: normal;
-  height: 100%;
   
   @media (min-width: 368px) {
-    grid-template-columns: repeat(2, 1fr);
-    height: 100%;
+    grid-template-columns: repeat(2, minmax(auto, 220px));
   }
+  
   @media (min-width: 700px) {
-    grid-template-columns: repeat(4, 1fr);
-    width: 70%;
-    height: 100%;
+    grid-template-columns: repeat(4, minmax(auto, 220px));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, minmax(auto, 220px));
   }
 `;
 

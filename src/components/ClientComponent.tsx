@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { SectionMovies, Data, InfoCard, Card } from "./styled";
 import alt from "../assets/altmovie.jpg";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Box } from "@mui/material";
 import Link from "next/link";
 
 function ClientComponent() {
@@ -16,7 +16,11 @@ function ClientComponent() {
   const handlePageChange = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
       setPage(value);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const element = document.querySelector('.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation2.mui-qbng18-MuiPaper-root');
+      if (element) {
+        const position = element.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: position, behavior: "smooth" });
+      }
     },
     []
   );
@@ -25,7 +29,7 @@ function ClientComponent() {
   }, [page]);
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
       {loading ? (
         <Skeleton
           variant="rectangular"
@@ -39,7 +43,7 @@ function ClientComponent() {
             <Link href={`/details/${movie.id}`} key={key}>
               <Card key={key}>
                 <Image
-                  quality={50}
+                  quality={90}
                   loading="eager"
                   width={220}
                   height={330}
@@ -64,13 +68,15 @@ function ClientComponent() {
           ))}
         </SectionMovies>
       )}
-      <Pag
-        key={`${totalPages}`}
-        color="primary"
-        count={totalPages > 500 ? 500 : totalPages}
-        onChange={handlePageChange}
-      />
-    </>
+      <Box sx={{ mt: 4, mb: 4 }}>
+        <Pag
+          key={`${totalPages}`}
+          color="primary"
+          count={totalPages > 500 ? 500 : totalPages}
+          onChange={handlePageChange}
+        />
+      </Box>
+    </Box>
   );
 }
 

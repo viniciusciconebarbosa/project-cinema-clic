@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./header.module.css"; // Importar o módulo CSS
+import styles from "./Header.module.css"; // Importar o módulo CSS
 import logo from "../../assets/logoSmall.png";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
@@ -29,7 +29,7 @@ const Header = () => {
       ></div>
       <nav className={styles.nav}>
         <a className={styles.logo} href="/">
-          Home
+          HOME
         </a>
 
         {loading ? (
@@ -40,15 +40,16 @@ const Header = () => {
             sx={{ mb: 2 }}
           />
         ) : (
-          <Image
-            src={logo.src}
-            alt="logo site"
-            width={110}
-            height={60}
-            quality={100}
+          <div className={styles.logoContainer}>
+            <Image
+              src={logo.src}
+              alt="logo site"
+              width={110}
+              height={60}
+              quality={100}
             loading="eager"
-            // ou "intrinsic"
-          />
+            />
+          </div>
         )}
         <div
           className={`${styles.mobileMenu} ${isActive ? styles.active : ""}`}
