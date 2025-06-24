@@ -116,20 +116,19 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
   return (
     <Container maxWidth="xl" sx={{ py: 4, mt: 13 }}>
       <Paper 
-        elevation={3}
         sx={{
           p: 4,
-          background: 'linear-gradient(135deg, #001e3c 0%, #0a1929 100%)',
+          background: 'linear-gradient(135deg, #e1e6e9 0%,#e3f2fd 100%)',
           color: 'white',
-          borderRadius: 2,
+          borderRadius: 0,
           position: 'relative',
           overflow: 'hidden'
         }}
       >
         <Grid container spacing={4}>
           {/* Poster e Informações Principais */}
-          <Grid item xs={12} md={4}>
-            <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', boxShadow: '0 8px 16px rgba(0,0,0,0.4)' }}>
+          <Grid item xs={12} md={3}>
+            <Box sx={{ position: 'relative' , overflow: 'hidden',  boxShadow: '0 8px 16px rgba(0,0,0,0.4)' }}>
               <Image
                 src={`https://image.tmdb.org/t/p/w500${details.poster_path || ''}`}
                 alt={details.title || details.name || ''}
@@ -144,7 +143,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
             <Stack spacing={2} sx={{ mt: 3 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CalendarTodayIcon />
-                <Typography>
+                <Typography color="black">
                   {details.release_date || details.first_air_date}
                 </Typography>
               </Box>
@@ -152,7 +151,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               {isMovie && details.runtime && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <AccessTimeIcon />
-                  <Typography>
+                  <Typography color="black">
                     {Math.floor(details.runtime / 60)}h {details.runtime % 60}min
                   </Typography>
                 </Box>
@@ -161,7 +160,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               {details.original_language && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <LanguageIcon />
-                  <Typography>
+                  <Typography color="black" >
                     {new Intl.DisplayNames(['pt'], { type: 'language' }).of(details.original_language)}
                   </Typography>
                 </Box>
@@ -170,7 +169,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               {details.budget && details.budget > 0 && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <MoneyIcon />
-                  <Typography>
+                  <Typography color="black">
                     Orçamento: {formatCurrency(details.budget)}
                   </Typography>
                 </Box>
@@ -187,7 +186,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               sx={{ 
                 fontFamily: 'Poppins',
                 fontWeight: 600,
-                background: 'linear-gradient(to right, #CB9B51, #F6E27A)',
+                background: '#3a3a3a',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
@@ -202,7 +201,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                 value={details.vote_average / 2}
                 precision={0.5}
                 readOnly
-                icon={<StarIcon sx={{ color: '#F6E27A' }} />}
+                icon={<StarIcon sx={{ color: '#e9c40e' }} />}
                 emptyIcon={<StarIcon sx={{ color: 'grey.500' }} />}
               />
               <Typography variant="body1">
@@ -229,7 +228,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               variant="h6" 
               gutterBottom 
               sx={{ 
-                color: '#F6E27A',
+                color: '#b2a358',
                 fontFamily: 'Poppins',
                 mb: 2 
               }}
@@ -242,7 +241,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               sx={{ 
                 fontSize: '1.1rem',
                 lineHeight: 1.8,
-                color: 'grey.100'
+                color: 'black'
               }}
             >
               {details.overview || "Sinopse não disponível."}
@@ -254,17 +253,18 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                 variant="h6" 
                 gutterBottom
                 sx={{ 
-                  color: '#F6E27A',
+                  color: '#9f9250',
                   fontFamily: 'Poppins',
                   mb: 2 
+                  
                 }}
               >
                 Informações Adicionais
               </Typography>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <Paper sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
-                    <Typography variant="subtitle2" color="grey.400">
+                <Grid item xs={12} sm={6} >
+                  <Paper sx={{ p: 2, bgcolor: '#ffffff93',borderRadius: 0, height: '100%' }}>
+                    <Typography color="#2e2e2e92" sx={{ fontWeight: '600' }} >
                       Status
                     </Typography>
                     <Typography variant="body1">
@@ -274,8 +274,8 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                 </Grid>
                 {details.production_companies && details.production_companies.length > 0 && (
                   <Grid item xs={12} sm={6}>
-                    <Paper sx={{ p: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
-                      <Typography variant="subtitle2" color="grey.400">
+                    <Paper sx={{ p: 2, bgcolor: '#ffffff93', borderRadius: 0 ,height: '100%' }}>
+                      <Typography color="#2e2e2e92"  sx={{ fontWeight: '600' }}>
                         Produtoras
                       </Typography>
                       <Typography variant="body1">
@@ -295,7 +295,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
             variant="h5" 
             gutterBottom
             sx={{ 
-              color: '#F6E27A',
+              color: '#ae9f55',
               fontFamily: 'Poppins',
               mb: 3 
             }}
@@ -307,8 +307,8 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               <Grid item xs={6} sm={4} md={2} key={actor.id}>
                 <Paper 
                   sx={{ 
+                    borderRadius: 0,
                     bgcolor: 'rgba(255,255,255,0.05)',
-                    borderRadius: 2,
                     overflow: 'hidden',
                     transition: 'transform 0.2s',
                     '&:hover': {
@@ -320,7 +320,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                     href={`https://google.com/search?q=${encodeURIComponent(actor.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
+                    style={{ textDecoration: 'none', color: 'inherit' ,backgroundColor: '#ffffff93' }}
                   >
                     <Image
                       src={actor.profile_path 
@@ -330,13 +330,13 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                       alt={actor.name}
                       width={185}
                       height={278}
-                      style={{ width: '100%', height: 'auto' }}
+                      style={{ width: '100%', height: 'auto',backgroundColor: '#ffffff93'  }}
                     />
-                    <Box sx={{ p: 1 }}>
+                    <Box sx={{ p: 1, backgroundColor: '#ffffff93' }} >
                       <Typography variant="subtitle2" noWrap>
                         {actor.name}
                       </Typography>
-                      <Typography variant="caption" color="grey.400" noWrap>
+                      <Typography variant="caption" color="grey.600" noWrap>
                         {actor.character}
                       </Typography>
                     </Box>
@@ -354,7 +354,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               variant="h5" 
               gutterBottom
               sx={{ 
-                color: '#F6E27A',
+                color: '#bbab5c',
                 fontFamily: 'Poppins',
                 mb: 3 
               }}
@@ -395,7 +395,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               variant="h5" 
               gutterBottom
               sx={{ 
-                color: '#F6E27A',
+                color: '#aea059',
                 fontFamily: 'Poppins',
                 mb: 3 
               }}
@@ -442,7 +442,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
               variant="h5" 
               gutterBottom
               sx={{ 
-                color: '#F6E27A',
+                color: '#ae9f54',
                 fontFamily: 'Poppins',
                 mb: 3 
               }}
@@ -455,9 +455,9 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                   <Link href={`/details/${item.id}`} style={{ textDecoration: 'none' }}>
                     <Paper
                       sx={{
-                        bgcolor: 'rgba(255,255,255,0.05)',
-                        borderRadius: 2,
-                        overflow: 'hidden',
+                        bgcolor: 'rgb(255, 255, 255)',
+                        borderRadius: 0,
+                        height: '80%',
                         transition: 'transform 0.2s',
                         '&:hover': {
                           transform: 'translateY(-4px)'
@@ -474,11 +474,11 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
                         height={330}
                         className={styles.imagecard}
                       />
-                      <Box sx={{ p: 1 }}>
+                      <Box sx={{ p: 1, height:"15%", backgroundColor:"white"}}>
                         <Typography 
                           variant="subtitle2"
                           sx={{ 
-                            color: 'white',
+                            color: 'black',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap'
@@ -498,7 +498,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ details, images, videos, review
         {/* Reviews */}
         <div className={styles.reviewsSection}>
           <div className={styles.reviewsHeader}>
-            <h2>Comentários</h2>
+            <h2 style={{ color: '#ae9f54' }}>Comentários</h2>
             <select 
               value={selectedLanguage} 
               onChange={(e) => handleLanguageChange(e.target.value)}

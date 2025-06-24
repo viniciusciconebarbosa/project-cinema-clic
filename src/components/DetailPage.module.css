@@ -77,7 +77,6 @@
 }
 
 .actorImage {
-  border-radius: 10%;
   margin-bottom: 0.5rem;
 }
 
@@ -144,7 +143,7 @@
 }
 
 .languageSelect {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(20, 20, 20, 0.338);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.5rem 1rem;

@@ -1,14 +1,13 @@
 .reviewsContainer {
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  background: rgb(255, 255, 255);
   margin-top: 2rem;
 }
 
 .reviewsTitle {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #fff;
+  color: #000000;
 }
 
 .reviewsGrid {
@@ -39,7 +38,7 @@
 
 .reviewAuthor {
   font-size: 1.2rem;
-  color: #fff;
+  color: #000000;
   margin: 0;
 }
 
@@ -49,7 +48,7 @@
 }
 
 .reviewContent {
-  color: #ccc;
+  color: #000000;
   margin: 0;
   line-height: 1.5;
   margin-bottom: 1rem;
